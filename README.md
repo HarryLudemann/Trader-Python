@@ -45,12 +45,17 @@
         <tr>
             <td>Data/get_yfinance</td>
             <td>get_yfinance_period</td>
-            <td>Given intervel (eg 1d), ticker, start date and end date gets stock data OHLC and volume from yfinance</td>
+            <td>Given interval (eg 1d), ticker, start date and end date gets stock data OHLC and volume from yfinance</td>
         </tr>
         <tr>
             <td>Data/get_yfinance</td>
             <td>get_yfinance_date</td>
-            <td>Given intervel (eg 1m), ticker and period (eg 7d) gets stock data OHLC and volume from yfinance</td>
+            <td>Given interval (eg 1m), ticker and period (eg 7d) gets stock data OHLC and volume from yfinance</td>
+        </tr>
+        <tr>
+            <td>Data/get_yahoo</td>
+            <td>get_yahoo_trending</td>
+            <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
         </tr>
     </tbody>
 </table>
