@@ -2,52 +2,55 @@ from abc import ABC, abstractmethod
 
 class Algorithm(ABC):
     """ Abstract class to store algorithm infomation and functions """
+    Name = ""
+    Symbol = ""
+    StartDate = ""
+    EndDate = ""
+    Cash = 0
+
+    # Setter
+    def setName(self, name):
+        self.Name = name
+    def setSymbol(self, symbol):
+        self.Symbol = symbol
+    def setStartDate(self, startDate):
+        self.StartDate = startDate
+    def setEndDate(self, endDate):
+        self.EndDate = endDate
+    def setCash(self, cash):
+        self.Cash = cash
+
 
     # Methods
+    @abstractmethod
+    def Initialize(self):
+        """ Abstract method to define fields at creation """
+        pass
+
     @abstractmethod
     def on_data(self):
         """ Abstract method to define whats happens on new data """
         pass
 
-    # Properties
-    @property
-    @abstractmethod
-    def Name(self, name):
-        pass
-        
-    @property
-    @abstractmethod
-    def Symbol(self, symbol):
-        pass
-        
-    @property
-    @abstractmethod
-    def StartDate(self, start_date):
-        pass
 
-    @property
-    @abstractmethod
-    def EndDate(self, end_date):
-        pass
-    
-    @property
-    @abstractmethod
-    def Cash(self, cash):
-        pass
 
 
 
 if __name__ == '__main__':
     class TestAlgo(Algorithm):
         """ Test Algorithm """
-        Name = "Test Algo"
-        Symbol = "TEST"
-        StartDate = "2018-01-01"
-        EndDate = "2018-01-02"
-        Cash = 100000
+
+        def Initialize(self):
+            self.Symbol = "AAPL"
+            self.Name = "Test Algo"
+            self.StartDate = "2018-01-01"
+            self.EndDate = "2018-01-02"
+            self.Cash = 100000
 
         def on_data(self):
             print(self.Symbol)
 
 
-    TestAlgo().on_data()
+    test_algo = TestAlgo()
+    test_algo.Initialize()
+    test_algo.on_data()

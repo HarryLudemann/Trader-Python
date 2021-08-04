@@ -16,14 +16,17 @@ def test_algorithm():
     """Checks the algorthm abstract class initializes properly returning value"""
 
     class TestAlgo(StockTrader.Algorithm):
-        """ Test Algorithm that returns test value in on data"""
-        Name = "Test Algo"
-        Symbol = "TEST"
-        StartDate = "2018-01-01"
-        EndDate = "2018-01-02"
-        Cash = 100000
+        """ Test Algorithm that returns test symbol in on data"""
+        def Initialize(self):
+            self.Symbol = "AAPL"
+            self.Name = "Test Algo"
+            self.StartDate = "2018-01-01"
+            self.EndDate = "2018-01-02"
+            self.Cash = 100000
 
         def on_data(self):
             return self.Symbol
 
-    assert TestAlgo().on_data() == "TEST"
+    algo = TestAlgo()
+    algo.Initialize()
+    assert algo.on_data() == "AAPL"
