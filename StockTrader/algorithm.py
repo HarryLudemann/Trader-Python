@@ -29,7 +29,7 @@ class Algorithm(ABC):
 
     @abstractmethod
     def on_data(self):
-        """ Abstract method to define whats happens on new data """
+        """ Abstract method to define what happens on new data """
         pass
 
 

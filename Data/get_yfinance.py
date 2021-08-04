@@ -1,4 +1,6 @@
 import yfinance as yf
+import pandas as pd
+import os
 
 
 def get_yfinance_date(interval, tickers, start_date, end_date):
@@ -93,4 +95,36 @@ def get_yfinance_period(interval, tickers, period):
     )
 
 
+def clean_yfinance_df(tickers, dataframe):
+    """
+    clean up given dataframe
+    :return list of pandas dataFrame:
+    """
+    option = ['Open', 'High', 'Low', 'Close', 'Volume']
+    dataframe_list = []         # list of cleaned dataframes
+    for ticker in tickers:
+        df = pd.DataFrame()
+        df['Open'] = dataframe[ticker][:10]     # add column to df
 
+        for i in range(1,5):
+            df[ option[i] ] = dataframe[ticker + f".{i}"][:10]   # add column to df
+
+        # remove first 2 rows in df
+        df = df.iloc[2:]
+        
+        df = df.astype(float)   # make all entries floats
+        df['Date'] = dataframe.iloc[:,0]    # add date column
+
+        dataframe_list.append(df)
+    
+    return dataframe_list
+
+
+
+def Create_YFinance_Data(tickers, start_date, end_date):
+    """Function that updates yfinance data in Live-Data"""
+    os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates')) # Move Path to main 
+    # Get Daily Data
+    get_yfinance_date(interval='1d', tickers=tickers, start_date=start_date, end_date=end_date).to_csv('Live-Data/daily_yfinance_data.csv') 
+    # Get and save Minute Data
+    get_yfinance_period(interval='1m', tickers=tickers, period='7d').to_csv('Live-Data/minute_yfinance_data.csv') 

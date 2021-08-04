@@ -7,8 +7,7 @@
 * start. py - main script    
 * tickers.txt - list of tickers to collect information on     
 
-### Custom Modules
-
+### Custom Modules:
 ##### Helper Functions
 <table>
     <thead>
@@ -28,6 +27,11 @@
             <td>Helper/load_data</td>
             <td>get_tickers</td>
             <td>Given no arguments, loads tickers from tickers.txt (Ticker on each line) and returns list</td>
+        </tr>
+        <tr>
+            <td>Helper/visualize</td>
+            <td>plot_ohlc</td>
+            <td>given cleaned dataframe, plots ohlc</td>
         </tr>
     </tbody>
 </table>
@@ -53,6 +57,16 @@
             <td>Given interval (eg 1m), ticker and period (eg 7d) gets stock data OHLC and volume from yfinance</td>
         </tr>
         <tr>
+            <td>Data/get_yfinance</td>
+            <td>clean_yfinance_df</td>
+            <td>Given tickers and dataframe from a yfinance array and returns list of cleaned dataframes</td>
+        </tr>
+        <tr>
+            <td>Data/get_yfinance</td>
+            <td>Create_YFinance_Data</td>
+            <td>Given tickers, start date and end date gets daily and minute(Set to 7 days) data from yfinance to Live-Data</td>
+        </tr>
+        <tr>
             <td>Data/get_yahoo</td>
             <td>get_yahoo_trending</td>
             <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
@@ -63,7 +77,7 @@
 
 
 
-### Tests
+### Tests:
 <table>
     <thead>
         <tr>
