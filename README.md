@@ -74,6 +74,16 @@
             <td>Given tickers, start date and end date gets daily and minute(Set to 7 days) data from yfinance to Live-Data</td>
         </tr>
         <tr>
+            <td>Data/get_yfinance</td>
+            <td>Update_YFinance_Minute</td>
+            <td>Given tickers, Gets minute data and adds to existing minute data</td>
+        </tr>
+        <tr>
+            <td>Data/get_yfinance</td>
+            <td>Update_YFinance_Daily</td>
+            <td>Given tickers, Gets daily data and adds to existing daily data</td>
+        </tr>
+        <tr>
             <td>Data/get_yahoo</td>
             <td>get_yahoo_trending</td>
             <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
