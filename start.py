@@ -1,5 +1,4 @@
 # Custom Modules
-import StockTrader
 import Data
 import Helper
 
@@ -12,7 +11,6 @@ start_date, end_date = Helper.get_dates(Months=get_months)    # Get the start(cu
 
 # Get Stock Data
 data = Data.get_yfinance_date(interval, tickers, start_date, end_date)   # returns numpy array of data using dates
-
 data = Data.get_yfinance_period(interval, tickers, period)               # returns numpy array of data using period
 
 # save as csv

@@ -45,6 +45,6 @@ def get_yahoo_trending():
 
 
 if __name__ == '__main__':
-    trending_tickers = get_trending_tickers()       # get the trending tickers
+    trending_tickers = get_yahoo_trending()       # get the trending tickers
 
     print( str( len( trending_tickers ) ) + ' Trending Tickers Found' )     # total number of trending tickers should be 30
