@@ -122,9 +122,11 @@ def clean_yfinance_df(tickers, dataframe):
 
 
 def Create_YFinance_Data(tickers, start_date, end_date):
-    """Function that updates yfinance data in Live-Data"""
+    """Function that creates yfinance data in Live-Data"""
     os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates')) # Move Path to main 
     # Get Daily Data
     get_yfinance_date(interval='1d', tickers=tickers, start_date=start_date, end_date=end_date).to_csv('Live-Data/daily_yfinance_data.csv') 
     # Get and save Minute Data
     get_yfinance_period(interval='1m', tickers=tickers, period='7d').to_csv('Live-Data/minute_yfinance_data.csv') 
+
+

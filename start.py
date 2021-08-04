@@ -17,8 +17,9 @@ if not os.path.exists('Live-Data'):                           # Create folder to
 Data.Create_YFinance_Data(TICKERS, START_DATE, END_DATE)     # Create YFinance Data
 
 
-# plotting daily data
-daily_data = pd.read_csv('Live-Data/daily_yfinance_data.csv')   # load yfinance daily data data from csv's
-cleaned_stocks = Data.clean_yfinance_df(TICKERS, daily_data) # clean data
-Helper.plot_ohlc( cleaned_stocks[0].dropna() )      # remove NaN values and plot data
 
+
+def Plotting_Example():
+    daily_data = pd.read_csv('Live-Data/daily_yfinance_data.csv')       # load yfinance daily data data from csv's
+    cleaned_stocks = Data.clean_yfinance_df(TICKERS, daily_data)        # clean data
+    Helper.plot_ohlc( cleaned_stocks[0].dropna() )                      # remove NaN values and plot data
