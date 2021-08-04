@@ -80,3 +80,5 @@
         </tr>
     </tbody>
 </table>
+
+[![Run Python Tests](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-pytest.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-pytest.yml)
