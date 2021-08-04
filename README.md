@@ -78,6 +78,11 @@
             <td>test_yahoo_trending</td>
             <td>Tests that get_yahoo_trending returns 30 items</td>
         </tr>
+        <tr>
+            <td>Test/test_algorithm.py</td>
+            <td>test_algorithm</td>
+            <td>Tests that algorithms abstract class instantiates with appropriate fields</td>
+        </tr>
     </tbody>
 </table>
 

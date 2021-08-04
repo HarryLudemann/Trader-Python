@@ -17,7 +17,13 @@ def test_algorithm():
 
     class TestAlgo(StockTrader.Algorithm):
         """ Test Algorithm that returns test value in on data"""
-        def on_data(self):
-            return "Test"
+        Name = "Test Algo"
+        Symbol = "TEST"
+        StartDate = "2018-01-01"
+        EndDate = "2018-01-02"
+        Cash = 100000
 
-    assert TestAlgo(name="Test", symbol="TEST", start_date="2018-01-01", end_date="2018-01-02").on_data() == "Test"
+        def on_data(self):
+            return self.Symbol
+
+    assert TestAlgo().on_data() == "TEST"
