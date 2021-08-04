@@ -1,1 +1,0 @@
-from Trader.algorithm import Algorithm

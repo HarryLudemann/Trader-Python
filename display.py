@@ -1,10 +1,9 @@
 # Modules
-import Data
 import pandas as pd
 
 # Custom Modules
-import Helper
-import Data
+from StockTrader import Helper
+from StockTrader import Data
 
 
 TICKERS = Helper.get_tickers()                                # Load tickers from tickers.txt into list

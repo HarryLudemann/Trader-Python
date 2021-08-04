@@ -9,7 +9,7 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
 
 # Custom Modules
-import Data
+from StockTrader import Data
 
 
 def test_yahoo_trending():
