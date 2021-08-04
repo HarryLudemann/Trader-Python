@@ -19,4 +19,3 @@ data = Data.get_yfinance_period(interval, tickers, period)               # retur
 if not os.path.exists('Live-Data'):                          # Create Live-Data Directory if Doesnt exsist
     os.makedirs('Live-Data')
 data.to_csv('Live-Data/stock_data.csv')                      # Save Data to CSV
-
