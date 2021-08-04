@@ -1,13 +1,15 @@
 # Stock-Trader
 
 ### File Structure
-* Algorithm - contains created algorithms
+* Algorithms - contains created algorithms
 * .github - Folder containing github actions
 * Data - Module to download data from different sources    
 * Helper - Module to clean data or load local data     
 * Live-Data - Contains files saved and created in runtime    
 * Trader - Module containing main Trading features
 * start. py - main script    
+* display. py - script to display data
+* tester. py - not needed used to test functions
 * tickers.txt - list of tickers to collect information on     
 
 ### Custom Modules:

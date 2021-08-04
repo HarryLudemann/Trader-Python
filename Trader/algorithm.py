@@ -23,7 +23,7 @@ class Algorithm(ABC):
 
     # Methods
     @abstractmethod
-    def Initialize(self):
+    def Init(self):
         """ Abstract method to define fields at creation """
         pass
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     class TestAlgo(Algorithm):
         """ Test Algorithm """
 
-        def Initialize(self):
+        def Init(self):
             self.Symbol = "AAPL"
             self.Name = "Test Algo"
             self.StartDate = "2018-01-01"
@@ -52,5 +52,5 @@ if __name__ == '__main__':
 
 
     test_algo = TestAlgo()
-    test_algo.Initialize()
+    test_algo.Init()
     test_algo.on_data()
