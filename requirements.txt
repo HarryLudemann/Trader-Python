@@ -34,3 +34,6 @@ urllib3==1.26.6
 wcwidth==0.2.5
 wincertstore==0.2
 yfinance==0.1.63
+pytest
+pytest-cov
+pytest-github-actions-annotate-failures
