@@ -59,3 +59,24 @@
         </tr>
     </tbody>
 </table>
+
+
+
+
+### Tests
+<table>
+    <thead>
+        <tr>
+            <th>File</th>
+            <th>Name</th>
+            <th>Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Test/test_get_yahoo.py</td>
+            <td>test_yahoo_trending</td>
+            <td>Tests that get_yahoo_trending returns 30 items</td>
+        </tr>
+    </tbody>
+</table>
