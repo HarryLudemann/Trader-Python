@@ -1,28 +1,24 @@
 # Modules
 import os
+import pandas as pd
 
 # Custom Modules
 import Data
 import Helper
 
-# Declare Varibles
-tickers = Helper.get_tickers()                                # Period for data (1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max)
-# get start and end date 
-get_months = 1                                                # Number of months to get daily data for
-start_date, end_date = Helper.get_dates(Months=get_months)    # Get the start(current) and end date(-Get Months) for daily data
+# Initialize 
+GET_MONTHS = 1                                                # Number of months to get daily data for
+TICKERS = Helper.get_tickers()                                # Load tickers from tickers.txt into list
+START_DATE, END_DATE = Helper.get_dates(Months=GET_MONTHS)    # Get end date(current) and start date(-Get Months) for daily data
 
-# Create Live-Data Directory if Doesnt exsist
-if not os.path.exists('Live-Data'):                          
+if not os.path.exists('Live-Data'):                           # Create folder to store live data if doesnt excists
     os.makedirs('Live-Data')
 
-# Create YFinance Data
-Data.Create_YFinance_Data(tickers, start_date, end_date)
+Data.Create_YFinance_Data(TICKERS, START_DATE, END_DATE)     # Create YFinance Data
 
 
-# minute_data = pd.read_csv('Live-Data/minute_stock_data.csv')
-# daily_data = pd.read_csv('Live-Data/daily_stock_data.csv')
-
-# cleaned_stocks = Data.clean_yfinance_df(tickers, daily_data)
-
-# Helper.plot_ohlc( cleaned_stocks[0].dropna() )      # remove NaN values and plot data
+# plotting daily data
+daily_data = pd.read_csv('Live-Data/daily_yfinance_data.csv')   # load yfinance daily data data from csv's
+cleaned_stocks = Data.clean_yfinance_df(TICKERS, daily_data) # clean data
+Helper.plot_ohlc( cleaned_stocks[0].dropna() )      # remove NaN values and plot data
 
