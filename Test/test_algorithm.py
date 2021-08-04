@@ -15,7 +15,7 @@ import Trader
 def test_algorithm():
     """Checks the algorthm abstract class initializes properly returning value"""
 
-    class TestAlgo(StockTrader.Algorithm):
+    class TestAlgo(Trader.Algorithm):
         """ Test Algorithm that returns test symbol in on data"""
         def Init(self):
             self.Symbol = "AAPL"
