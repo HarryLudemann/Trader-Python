@@ -138,6 +138,31 @@ ALPHA_VANTAGE_KEY=eafaapikey
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api</td>
         </tr>
+        <tr>
+            <td>Get_Alpha_Forex_Exchange_Rate</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given from and to currency saves  data to Live_data using alpha vantages CURRENCY_EXCHANGE_RATE api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Forex_FX_Intraday</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given from, to currency and interval saves  data to Live_data using alpha vantages FX_INTRADAY api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Forex_FX_Daily</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_DAILY api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Forex_FX_Weekly</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_WEEKLY api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Forex_FX_Monthly</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_MONTHLY api</td>
+        </tr>
     </tbody>
 </table>
 

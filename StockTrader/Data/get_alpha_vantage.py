@@ -104,17 +104,68 @@ def Get_Alpha_Stock_Monthly_Adj(ticker):
     df.to_csv(f'Live-Data/Stock/AlphaV_SMonthlyAdj_{ticker}.csv', index=False)
 
 
+
 # retreive forex infomation methods:
 
+
+def Get_Alpha_Forex_Exchange_Rate(from_currency, to_currency):
+    """
+    Given from and to currency saves data to Live_data using alpha vantages CURRENCY_EXCHANGE_RATE api
+    """
+    CSV_URL = f'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&datatype=csv&from_currency={from_currency}$to_currency={to_currency}&apikey={ALPHA_VANTAGE_KEY}'
+    df = pd.read_csv(CSV_URL)   
+    df.to_csv(f'Live-Data/Forex/AlphaV_FExchangeRate_{from_currency}_{to_currency}.csv', index=False)
+
+
+def Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, interval):
+    """
+    Given from, to currency and interval(1min, 5min, 15min, 30min) saves data to Live_data using alpha vantages FX_INTRADAY api
+    """
+    CSV_URL = f'https://www.alphavantage.co/query?function=FX_INTRADAY&datatype=csv&interval={interval}&from_symbol={from_currency}$to_symbol={to_currency}&apikey={ALPHA_VANTAGE_KEY}'
+    df = pd.read_csv(CSV_URL)   
+    df.to_csv(f'Live-Data/Forex/AlphaV_FFXIntraday_{interval}_{from_currency}_{to_currency}.csv', index=False)
+
+
+def Get_Alpha_Forex_Crypto_Intraday(symbol, market, interval):
+    """
+    Given symbol, market and interval(1min, 5min, 15min, 30min) saves data to Live_data using alpha vantages CRYPTO_INTRADAY api
+    """
+    CSV_URL = f'https://www.alphavantage.co/query?function=FX_INTRADAY&datatype=csv&interval={interval}&symbol={symbol}$market={market}&apikey={ALPHA_VANTAGE_KEY}'
+    df = pd.read_csv(CSV_URL)   
+    df.to_csv(f'Live-Data/Forex/AlphaV_FCryptoIntra_{interval}_{market}_{symbol}.csv', index=False)
+
+
+
+def Get_Alpha_Forex_FX_Daily(from_symbol, to_symbol):
+    """
+    Given from and to symbol saves data to Live_data using alpha vantages FX_DAILY api
+    """
+    CSV_URL = f'https://www.alphavantage.co/query?function=FX_DAILY&datatype=csv&from_symbol={from_symbol}$to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_KEY}'
+    df = pd.read_csv(CSV_URL)   
+    df.to_csv(f'Live-Data/Forex/AlphaV_FFXDaily_{from_symbol}_{to_symbol}.csv', index=False)
+
+
+def Get_Alpha_Forex_FX_Weekly(from_symbol, to_symbol):
+    """
+    Given from and to symbol saves data to Live_data using alpha vantages FX_WEEKLY api
+    """
+    CSV_URL = f'https://www.alphavantage.co/query?function=FX_WEEKLY&datatype=csv&from_symbol={from_symbol}$to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_KEY}'
+    df = pd.read_csv(CSV_URL)   
+    df.to_csv(f'Live-Data/Forex/AlphaV_FFXWeekly_{from_symbol}_{to_symbol}.csv', index=False)
+
+
+def Get_Alpha_Forex_FX_Monthly(from_symbol, to_symbol):
+    """
+    Given from and to symbol saves data to Live_data using alpha vantages FX_MONTHLY api
+    """
+    CSV_URL = f'https://www.alphavantage.co/query?function=FX_MONTHLY&datatype=csv&from_symbol={from_symbol}$to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_KEY}'
+    df = pd.read_csv(CSV_URL)   
+    df.to_csv(f'Live-Data/Forex/AlphaV_FFXMonthly_{from_symbol}_{to_symbol}.csv', index=False)
+
+
+# retreive crypto infomation methods:
 
 
 
 if __name__ == '__main__':
-    # Get_Alpha_Stock_Intraday(ticker='AAPL', interval='5min')
-    # Get_Alpha_Stock_Intraday_Ext(ticker='AAPL', interval='15min')
-    # Get_Alpha_Stock_Daily(ticker='AAPL')
-    # Get_Alpha_Stock_Daily_Adj(ticker='AAPL')
-    # Get_Alpha_Stock_Weekly(ticker='AAPL')
-    # Get_Alpha_Stock_Weekly_Adj(ticker='AAPL')
-    Get_Alpha_Stock_Monthly(ticker='AAPL')
-    Get_Alpha_Stock_Monthly_Adj(ticker='AAPL')
+    Get_Alpha_Forex_FX_Weekly(from_symbol='ETH', to_symbol='USD')
