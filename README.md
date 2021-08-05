@@ -113,6 +113,31 @@ ALPHA_VANTAGE_KEY=eafaapikey
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY api</td>
         </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Daily_Adj</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY_ADJUSTED api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Weekly</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Weekly_Adj</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY_ADJUSTED api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Monthly</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Monthly_Adj</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api</td>
+        </tr>
     </tbody>
 </table>
 
