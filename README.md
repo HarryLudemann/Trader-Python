@@ -99,69 +99,94 @@ ALPHA_VANTAGE_KEY=eafaapikey
             <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Intraday</td>
+            <td>Download_Alpha_Stock_Intraday</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Intraday_Ext</td>
+            <td>Download_Alpha_Stock_Intraday_Ext</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_INTRADAY_EXTENDED api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Daily</td>
+            <td>Download_Alpha_Stock_Daily</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Daily_Adj</td>
+            <td>Download_Alpha_Stock_Daily_Adj</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY_ADJUSTED api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Weekly</td>
+            <td>Download_Alpha_Stock_Weekly</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Weekly_Adj</td>
+            <td>Download_Alpha_Stock_Weekly_Adj</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY_ADJUSTED api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Monthly</td>
+            <td>Download_Alpha_Stock_Monthly</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Stock_Monthly_Adj</td>
+            <td>Download_Alpha_Stock_Monthly_Adj</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Forex_Exchange_Rate</td>
+            <td>Download_Alpha_Forex_Exchange_Rate</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given from and to currency saves  data to Live_data using alpha vantages CURRENCY_EXCHANGE_RATE api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Forex_FX_Intraday</td>
+            <td>Download_Alpha_Forex_FX_Intraday</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given from, to currency and interval saves  data to Live_data using alpha vantages FX_INTRADAY api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Forex_FX_Daily</td>
+            <td>Download_Alpha_Forex_FX_Daily</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_DAILY api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Forex_FX_Weekly</td>
+            <td>Download_Alpha_Forex_FX_Weekly</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_WEEKLY api</td>
         </tr>
         <tr>
-            <td>Get_Alpha_Forex_FX_Monthly</td>
+            <td>Download_Alpha_Forex_FX_Monthly</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_MONTHLY api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Crypto_Exchange_Rate</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given symbol and market returns 3 strings from alpha vantages CURRENCY_EXCHANGE_RATE api</td>
+        </tr>
+        <tr>
+            <td>Download_Alpha_Crypto_Intraday</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given symbol market and interval saves  data to Live_data using alpha vantages CRYPTO_INTRADAY api</td>
+        </tr>
+        <tr>
+            <td>Download_Alpha_Crypto_Daily</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given symbol and market saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_DAILY api</td>
+        </tr>
+        <tr>
+            <td>Download_Alpha_Crypto_Weekly</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given symbol and market saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_WEEKLY api</td>
+        </tr>
+        <tr>
+            <td>Download_Alpha_Crypto_Monthly</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given symbol and market  saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_MONTHLY api</td>
         </tr>
     </tbody>
 </table>
