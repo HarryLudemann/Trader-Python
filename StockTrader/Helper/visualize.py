@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 
 # method to plot given ohlc data    
-def plot_ohlc(df):
+def Plot_Ohlc(df):
     """Plotting function for OHLC data"""
     fig = plt.figure(figsize=(10,6))
     ax = fig.add_subplot(111)

@@ -9,7 +9,7 @@ headers = {
 }
 
 
-def get_yahoo_trending():
+def Get_Yahoo_Trending():
     """
     Scrapes trending tickers and infomation from yahoo.com
     :return list of dictionary's:
@@ -45,6 +45,6 @@ def get_yahoo_trending():
 
 
 if __name__ == '__main__':
-    trending_tickers = get_yahoo_trending()       # get the trending tickers
+    trending_tickers = Get_Yahoo_Trending()       # get the trending tickers
 
     print( str( len( trending_tickers ) ) + ' Trending Tickers Found' )     # total number of trending tickers should be 30

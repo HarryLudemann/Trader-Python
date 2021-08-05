@@ -2,7 +2,7 @@ import os
 # import tickers.txt as list using context manager
 # read tickers.txt and save to list
 # print list
-def get_tickers():
+def Get_Tickers():
     """
     loads tickers from tickers.txt into a returned list
     :return list:

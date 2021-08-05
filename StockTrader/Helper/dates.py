@@ -1,6 +1,6 @@
 import datetime
 
-def get_dates(Months):
+def Get_Dates(Months):
     """
     Gets start and end date, current date and current date - Months Arg
     :param Months int:

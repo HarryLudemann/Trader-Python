@@ -16,4 +16,4 @@ from StockTrader import Data
 
 def test_yahoo_trending():
     """Checks that get yahoo trending returns 30 items"""
-    assert len( Data.get_yahoo_trending() ) == 30
+    assert len( Data.Get_Yahoo_Trending() ) == 30
