@@ -125,27 +125,27 @@ def Create_Yfinance_Data(tickers, start_date, end_date):
     """Function that creates yfinance data in Live-Data"""
     os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates')) # Move Path to main 
     # Get Daily Data
-    Get_Yfinance_Date(interval='1d', tickers=tickers, start_date=start_date, end_date=end_date).to_csv('Live-Data/daily_yfinance_data.csv') 
+    Get_Yfinance_Date(interval='1d', tickers=tickers, start_date=start_date, end_date=end_date).to_csv('Live-Data/Stock/daily_yfinance_data.csv') 
     # Get and save Minute Data
-    Get_Yfinance_Period(interval='1m', tickers=tickers, period='7d').to_csv('Live-Data/minute_yfinance_data.csv') 
+    Get_Yfinance_Period(interval='1m', tickers=tickers, period='7d').to_csv('Live-Data/Stock/minute_yfinance_data.csv') 
 
 
 def Update_Yfinance_Minute(tickers):        # only possible for one minute to be missing
     """Function that updates yfinance minute data in Live-Data"""
     os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates'))  # Move Path to main 
-    minute_data = pd.read_csv('Live-Data/minute_yfinance_data.csv')                # import minute data as csv
+    minute_data = pd.read_csv('Live-Data/Stock/minute_yfinance_data.csv')                # import minute data as csv
     # Get new data, minimum period is 1d
-    new_data = Get_Yfinance_Period(interval='1m', tickers=tickers, period='1d').to_csv('Live-Data/minute_yfinance_data.csv') 
+    new_data = Get_Yfinance_Period(interval='1m', tickers=tickers, period='1d').to_csv('Live-Data/Stock/minute_yfinance_data.csv') 
     minute_data = pd.concat([minute_data, new_data], ignore_index=True)     # add new data to bottom of minute data
     minute_data = minute_data.drop_duplicates(keep=False)                   # remove duplicate rows
-    minute_data.to_csv('Live-Data/minute_yfinance_data.csv', index=False)   # save to new csv
+    minute_data.to_csv('Live-Data/Stock/minute_yfinance_data.csv', index=False)   # save to new csv
 
 
 def Update_Yfinance_Daily(tickers):         # only possible for one day to be missing
     """Function that updates yfinance daily data in Live-Data"""
     os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates'))  # Move Path to main 
-    daily_data = pd.read_csv('Live-Data/daily_yfinance_data.csv')                # import minute data as csv
-    new_data = Get_Yfinance_Period(interval='1d', tickers=tickers, period='1d').to_csv('Live-Data/minute_yfinance_data.csv') 
+    daily_data = pd.read_csv('Live-Data/Stock/daily_yfinance_data.csv')                # import minute data as csv
+    new_data = Get_Yfinance_Period(interval='1d', tickers=tickers, period='1d').to_csv('Live-Data/Stock/minute_yfinance_data.csv') 
     daily_data = pd.concat([daily_data, new_data], ignore_index=True)     # add new data to bottom of minute data
     daily_data = daily_data.drop_duplicates(keep=False)                   # remove duplicate rows
-    daily_data.to_csv('Live-Data/daily_yfinance_data.csv', index=False)   # save to new csv
+    daily_data.to_csv('Live-Data/Stock/daily_yfinance_data.csv', index=False)   # save to new csv

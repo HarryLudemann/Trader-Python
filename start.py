@@ -15,6 +15,7 @@ START_DATE, END_DATE = Helper.Get_Dates(Months=GET_MONTHS)    # Get end date(cur
 
 if not os.path.exists('Live-Data'):                           # Create folder to store live data if doesn't exists
     os.makedirs('Live-Data')
+    os.makedirs('Live-Data/Stock')
 
 Data.Create_Yfinance_Data(TICKERS, START_DATE, END_DATE)      # Create YFinance Data
 

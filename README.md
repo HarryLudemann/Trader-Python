@@ -1,7 +1,13 @@
 # Stock-Trader
 [![Python Tests](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml)
 
-### File Structure
+### Setup:
+Create .env in main directory (containing start.py) with alpha vantage key like so
+```
+ALPHA_VANTAGE_KEY=eafaapikey
+```
+
+### File Structure:
 * **StockTrader** - Contains Main Modules:
     * **Data** - Module to download data from different sources    
     * **Helper** - Module to clean data or load local data     
@@ -91,6 +97,21 @@
             <td>Get_Yahoo_Trending</td>
             <td>Data/get_yahoo</td>
             <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Intraday</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Intraday_Ext</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_INTRADAY_EXTENDED api</td>
+        </tr>
+        <tr>
+            <td>Get_Alpha_Stock_Daily</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY api</td>
         </tr>
     </tbody>
 </table>
