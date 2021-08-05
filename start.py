@@ -1,5 +1,4 @@
 # Modules
-from Algorithms.Example_Algo import StockAlgorithm
 import os           # for file operations
 import time         # for sleep - scheduler
 import datetime     # get current date
