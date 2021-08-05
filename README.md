@@ -1,4 +1,5 @@
 # Stock-Trader
+[![Python Tests](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml)
 
 ### File Structure
 * **Algorithms** - contains created algorithms
@@ -121,6 +122,3 @@
         </tr>
     </tbody>
 </table>
-
-
-[![Python Tests](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml)
