@@ -25,6 +25,7 @@ def test_algorithm():
             self.EndDate = "2018-01-02"
             self.Cash = 100000
             self.Data_Source = 'AlphaV'
+            self.interval = "1m"
 
         def on_data(self):
             return self.Symbol

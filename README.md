@@ -2,7 +2,8 @@
 [![Python Tests](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml)
 
 ### Setup:
-Create .env in main directory (containing start.py) with alpha vantage key like so
+##### Create .env:
+Create .env file in main directory (containing start.py) with alpha vantage key like so
 ```
 ALPHA_VANTAGE_KEY=eafaapikey
 ```
