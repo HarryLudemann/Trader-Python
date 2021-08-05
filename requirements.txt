@@ -54,7 +54,7 @@ pickleshare==0.7.5
 Pillow==8.2.0
 pluggy==0.13.1
 priority==1.3.0
-prompt-toolkit==3.0.19
+prompt-toolkit
 Protego==0.1.16
 py==1.10.0
 pyasn1==0.4.8

@@ -1,10 +1,7 @@
-# Custom Modules
-import Algorithms
+from StockTrader import Helper
 
 
-test_algo = Algorithms.Example_Algorithm()
-test_algo.Init()
-test_algo.on_data()
+algos = Helper.get_algorithms()         # list of Algorithm Objects
 
-
-
+for algo in algos:
+    algo.on_data()

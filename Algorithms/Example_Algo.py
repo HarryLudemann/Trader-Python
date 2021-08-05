@@ -10,10 +10,10 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
 
 # custom modules
-import Trader
+from StockTrader import Trader
 
 
-class Example_Algorithm(Trader.Algorithm):
+class StockAlgorithm(Trader.Algorithm):
     """ Example Algorithm """
 
     def Init(self):
