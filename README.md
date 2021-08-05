@@ -25,22 +25,22 @@
     </thead>
     <tbody>
         <tr>
-            <td>get_dates</td>
+            <td>Get_Dates</td>
             <td>Helper/dates</td>
             <td>Given integer, returns 2 strings of start and end date as yy-mm-dd. start date as current date minus given integer months and start as current date</td>
         </tr>
         <tr>
-            <td>get_tickers</td>
+            <td>Get_Tickers</td>
             <td>Helper/load_data</td>
             <td>Given no arguments, loads tickers from tickers.txt (Ticker on each line) and returns list</td>
         </tr>
         <tr>
-            <td>plot_ohlc</td>
+            <td>Plot_Ohlc</td>
             <td>Helper/visualize</td>
             <td>given cleaned dataframe, plots ohlc</td>
         </tr>
         <tr>
-            <td>load_algorithms</td>
+            <td>Load_Algorithms</td>
             <td>Helper/load_algorithms</td>
             <td>given nothing, returns list of objects from Algorithms dir</td>
         </tr>
