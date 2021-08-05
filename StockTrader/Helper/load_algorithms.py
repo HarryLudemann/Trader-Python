@@ -3,7 +3,7 @@ import sys
 import inspect
 
 
-def get_algorithms():
+def load_algorithms():
     """ function to get all classes in algorithms folder into a returned list """
     algos = []          # list to store classes
 

@@ -40,6 +40,11 @@
             <td>plot_ohlc</td>
             <td>given cleaned dataframe, plots ohlc</td>
         </tr>
+        <tr>
+            <td>Helper/load_algorithms</td>
+            <td>load_algorithms</td>
+            <td>given nothing, returns list of objects from Algorithms dir</td>
+        </tr>
     </tbody>
 </table>
 

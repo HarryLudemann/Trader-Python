@@ -17,8 +17,8 @@ class StockAlgorithm(Trader.Algorithm):
     """ Example Algorithm """
 
     def Init(self):
+        self.Name = "Example Stock Strategy"
         self.Symbol = "TSLA"
-        self.Name = "Tesla"
         self.StartDate = datetime.datetime.now().strftime("%Y-%m-%d") # current time
         self.Cash = 100000
 
