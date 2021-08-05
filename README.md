@@ -105,6 +105,11 @@ ALPHA_VANTAGE_KEY=eafaapikey
             <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
         </tr>
         <tr>
+            <td>Get_AlphaV_Stock</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given ticker, interval and optionally adjusted boolean returns df of stock data</td>
+        </tr>
+        <tr>
             <td>AlphaV_Stock_Controller</td>
             <td>Data/get_alpha_vantage</td>
             <td>Given Stock Algorithm object calls appropriate api to download information</td>

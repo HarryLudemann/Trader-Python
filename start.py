@@ -22,7 +22,15 @@ if not os.path.exists('Live-Data'):                           # Create folder to
     os.makedirs('Live-Data/Crypto')
 
 Algorithms = Helper.Load_Algorithms()                    # list of Algorithm Objects from Algorithms dir
-ActiveAlgorithms = Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE)   # list of Active Algorithms
+#ActiveAlgorithms = Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE)   # list of Active Algorithms
+
+# run method
+while(Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) != []):
+    for algorithm in Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE):
+        algorithm.Run()
+
+    time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop
+
 
 
 

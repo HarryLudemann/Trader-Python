@@ -7,7 +7,7 @@ import requests
 
 # retreive stocks infomation methods:
 def AlphaV_Stock_Controller(Algorithm):
-    """ passed algorithm object check interval and call appropriate API"""
+    """ passed algorithm object check interval and call appropriate API Download method"""
     if Algorithm.interval == '1m':
         AlphaV_Stock_Downloader('TIME_SERIES_INTRADAY', Algorithm.ticker, '1min')
     elif Algorithm.interval == '5m':
@@ -272,3 +272,125 @@ def Download_Alpha_Crypto_Monthly(symbol, market):
     df.to_csv(f'Live-Data/Crypto/AlphaV_CMonthly_{symbol}_{market}.csv', index=False)
 
 
+
+
+
+
+# stock get methods
+
+
+def Get_AlphaV_Stock(ticker, interval=None, Adjusted=False):  
+    """Passed API"""
+    if interval == '1m':
+        Get_Alpha_Stock_Intraday(ticker, '1min')
+    elif interval == '5m':
+        Get_Alpha_Stock_Intraday(ticker, '5min')
+    elif interval == '15m':
+        Get_Alpha_Stock_Intraday(ticker, '15min')
+    elif interval== '30m':
+        Get_Alpha_Stock_Intraday(ticker, '30min')
+    elif interval == '60m':
+        Get_Alpha_Stock_Intraday(ticker, '60min')
+    # check if adjusted
+    if Adjusted:
+        if interval == '1d':
+            Get_Alpha_Stock_Daily_Adj(ticker)
+        elif interval == '1w':
+            Get_Alpha_Stock_Weekly_Adj(ticker)
+        elif interval == '1M':
+            Get_Alpha_Stock_Monthly_Adj(ticker)
+    else:
+        if interval == '1d':
+            Get_Alpha_Stock_Daily(ticker)
+        elif interval == '1w':
+            Get_Alpha_Stock_Weekly(ticker)
+        elif interval == '1M':
+            Get_Alpha_Stock_Monthly(ticker)
+
+
+
+
+def Get_Alpha_Stock_Intraday(ticker, interval):
+    """
+    Given Ticker and interval saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY api
+    returns infomation from 1-2 months from 4:00am to 8:00pm Eastern Time for the US market
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&datatype=csv&interval={interval}&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
+
+
+
+
+def Get_Alpha_Stock_Intraday_Ext(ticker, interval):
+    """
+    Given Ticker and interval saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY_EXTENDED api
+    trrailing 2 years
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY_EXTENDED&symbol={ticker}&interval={interval}&slice=year1month1&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
+
+
+
+def Get_Alpha_Stock_Daily(ticker):
+    """
+    Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_DAILY api
+    covering 20+ years
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
+
+
+
+def Get_Alpha_Stock_Daily_Adj(ticker):
+    """
+    Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_DAILY_ADJUSTED api
+    covering 20+ years
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
+
+
+
+def Get_Alpha_Stock_Weekly(ticker):
+    """
+    Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_WEEKLY api
+    covering 20+ years
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
+
+
+
+def Get_Alpha_Stock_Weekly_Adj(ticker):
+    """
+    Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_WEEKLY_ADJUSTED api
+    covering 20+ years
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
+
+
+def Get_Alpha_Stock_Monthly(ticker):
+    """
+    Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_MONTHLY api
+    covering 20+ years
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
+
+
+def Get_Alpha_Stock_Monthly_Adj(ticker):
+    """
+    Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api
+    covering 20+ years
+    """
+    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
+    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
+    return pd.read_csv(CSV_URL)   
