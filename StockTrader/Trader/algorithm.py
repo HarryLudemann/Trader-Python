@@ -8,6 +8,7 @@ class Algorithm(ABC):
     EndDate = ""
     Cash = 0
     Data_Source = ""
+    interval = ""
 
     # Setter
     def setName(self, name):
@@ -22,6 +23,8 @@ class Algorithm(ABC):
         self.Cash = cash
     def setData_Source(self, data_source):
         self.Data_Source = data_source
+    def setInterval(self, interval):
+        self.interval = interval
 
     # Methods
     @abstractmethod
@@ -49,6 +52,7 @@ if __name__ == '__main__':
             self.EndDate = "2018-01-02"
             self.Cash = 100000
             self.Data_Source = 'AlphaV'
+            self.interval = "1m"
 
         def on_data(self):
             print(self.Symbol)

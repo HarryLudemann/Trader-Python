@@ -21,6 +21,8 @@ class StockAlgorithm(Trader.Algorithm):
         self.Symbol = "TSLA"
         self.StartDate = datetime.datetime.now().strftime("%Y-%m-%d") # current time
         self.Cash = 100000
+        self.Data_Source = 'AlphaV'
+        self.interval = "1m"
 
     def on_data(self):
         print(self.Symbol)
