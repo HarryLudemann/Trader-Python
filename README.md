@@ -51,6 +51,11 @@ ALPHA_VANTAGE_KEY=eafaapikey
             <td>Helper/load_algorithms</td>
             <td>given nothing, returns list of objects from Algorithms dir</td>
         </tr>
+        <tr>
+            <td>Load_Active_Algorithms</td>
+            <td>Helper/load_algorithms</td>
+            <td>given all algorithms list and current data, returns list of active Algorithm objects</td>
+        </tr>
     </tbody>
 </table>
 
@@ -98,6 +103,16 @@ ALPHA_VANTAGE_KEY=eafaapikey
             <td>Get_Yahoo_Trending</td>
             <td>Data/get_yahoo</td>
             <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
+        </tr>
+        <tr>
+            <td>AlphaV_Stock_Controller</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Stock Algorithm object calls appropriate api to download information</td>
+        </tr>
+        <tr>
+            <td>AlphaV_Stock_Downloader</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given Api name, ticker and optionally interval calls appropriate download function</td>
         </tr>
         <tr>
             <td>Download_Alpha_Stock_Intraday</td>

@@ -12,7 +12,6 @@ sys.path.insert(0, parentdir)
 # custom modules
 from StockTrader import Trader
 
-
 class StockAlgorithm(Trader.Algorithm):
     """ Example Algorithm """
 
@@ -22,7 +21,8 @@ class StockAlgorithm(Trader.Algorithm):
         self.StartDate = datetime.datetime.now().strftime("%Y-%m-%d") # current time
         self.Cash = 100000
         self.Data_Source = 'AlphaV'
-        self.interval = "1m"
+        self.Adjusted = False
+        self.Interval = "1m"
 
     def on_data(self):
         print(self.Symbol)

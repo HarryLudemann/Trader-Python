@@ -6,6 +6,55 @@ import requests
 # Alpha Vantage API max 5 times per minute or 500 times a day
 
 # retreive stocks infomation methods:
+def AlphaV_Stock_Controller(Algorithm):
+    """ passed algorithm object check interval and call appropriate API"""
+    if Algorithm.interval == '1m':
+        AlphaV_Stock_Downloader('TIME_SERIES_INTRADAY', Algorithm.ticker, '1min')
+    elif Algorithm.interval == '5m':
+        AlphaV_Stock_Downloader('TIME_SERIES_INTRADAY', Algorithm.ticker, '5min')
+    elif Algorithm.interval == '15m':
+        AlphaV_Stock_Downloader('TIME_SERIES_INTRADAY', Algorithm.ticker, '15min')
+    elif Algorithm.interval == '30m':
+        AlphaV_Stock_Downloader('TIME_SERIES_INTRADAY', Algorithm.ticker, '30min')
+    elif Algorithm.interval == '60m':
+        AlphaV_Stock_Downloader('TIME_SERIES_INTRADAY', Algorithm.ticker, '60min')
+    # check if adjusted
+    if Algorithm.Adjusted:
+        if Algorithm.interval == '1d':
+            AlphaV_Stock_Downloader('TIME_SERIES_DAILY_ADJUSTED', Algorithm.ticker)
+        elif Algorithm.interval == '1w':
+            AlphaV_Stock_Downloader('TIME_SERIES_WEEKLY_ADJUSTED', Algorithm.ticker)
+        elif Algorithm.interval == '1M':
+            AlphaV_Stock_Downloader('TIME_SERIES_MONTHLY_ADJUSTED', Algorithm.ticker)
+    else:
+        if Algorithm.interval == '1d':
+            AlphaV_Stock_Downloader('TIME_SERIES_DAILY', Algorithm.ticker)
+        elif Algorithm.interval == '1w':
+            AlphaV_Stock_Downloader('TIME_SERIES_WEEKLY', Algorithm.ticker)
+        elif Algorithm.interval == '1M':
+            AlphaV_Stock_Downloader('TIME_SERIES_MONTHLY', Algorithm.ticker)
+
+def AlphaV_Stock_Downloader(API, ticker, interval=None):
+    """ function passed api, ticker and optional interval calls appropriate stock download method"""
+    if API == 'TIME_SERIES_INTRADAY':
+        Download_Alpha_Stock_Intraday(ticker, interval)
+    elif API == 'TIME_SERIES_INTRADAY_EXTENDED':
+        Download_Alpha_Stock_Intraday_Ext(ticker, interval)
+    elif API == 'TIME_SERIES_DAILY':
+        Download_Alpha_Stock_Daily(ticker)
+    elif API == 'TIME_SERIES_DAILY_ADJUSTED':
+        Download_Alpha_Stock_Daily_Adj(ticker)
+    elif API == 'TIME_SERIES_WEEKLY':
+        Download_Alpha_Stock_Weekly(ticker)
+    elif API == 'TIME_SERIES_WEEKLY_ADJUSTED':
+        Download_Alpha_Stock_Weekly_Adj(ticker)
+    elif API == 'TIME_SERIES_MONTHLY':
+        Download_Alpha_Stock_Monthly(ticker)
+    elif API == 'TIME_SERIES_MONTHLY_ADJUSTED':
+        Download_Alpha_Stock_Monthly_Adj(ticker)
+
+    else:
+        print('Invalid API')
 
 
 def Download_Alpha_Stock_Intraday(ticker, interval):
@@ -23,7 +72,7 @@ def Download_Alpha_Stock_Intraday(ticker, interval):
 
 def Download_Alpha_Stock_Intraday_Ext(ticker, interval):
     """
-    Given Ticker and interval saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY_Extended api
+    Given Ticker and interval saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY_EXTENDED api
     trrailing 2 years
     """
     ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
@@ -89,17 +138,6 @@ def Download_Alpha_Stock_Monthly(ticker):
     CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
     df = pd.read_csv(CSV_URL)   
     df.to_csv(f'Live-Data/Stock/AlphaV_SMonthly_{ticker}.csv', index=False)
-
-
-def Download_Alpha_Stock_Monthly_Adj(ticker):
-    """
-    Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api
-    covering 20+ years
-    """
-    ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
-    CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
-    df = pd.read_csv(CSV_URL)   
-    df.to_csv(f'Live-Data/Stock/AlphaV_SMonthlyAdj_{ticker}.csv', index=False)
 
 
 def Download_Alpha_Stock_Monthly_Adj(ticker):
