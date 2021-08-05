@@ -2,18 +2,16 @@
 [![Python Tests](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml)
 
 ### File Structure
-* **Algorithms** - contains created algorithms
-* **Tests** - Contains pytests
-* **.github** - Folder containing github actions
-* **Live-Data** - Contains files saved and created in runtime   
-* **start. py** - main script    
-* **display. py** - script to display data
-* **tester. py** - not needed used to test functions
-* **tickers.txt** - list of tickers to collect information on     
-* **StockTrader** - Contains Modules:
+* **StockTrader** - Contains Main Modules:
     * **Data** - Module to download data from different sources    
     * **Helper** - Module to clean data or load local data     
     * **Trader** - Module containing main Trading features 
+* **Algorithms** - contains user created algorithm classes
+* **Live-Data** - Contains files saved and created in runtime   
+* **Tests** - Contains pytests
+* **start. py** - main script to start Stock Trader   
+* **display. py** - script to display data
+* **tickers.txt** - list of tickers to collect information on     
 
 ### Custom Modules:
 ##### Helper Functions
