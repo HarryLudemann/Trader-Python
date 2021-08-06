@@ -56,11 +56,7 @@ def Loaf_Inactive_Algorithms(All_Algorithms, Current_Date):
     for stock_algo in All_Algorithms:
         algo_start = stock_algo.StartDate
         algo_end = stock_algo.EndDate
-        if (algo_end != None):      # if end date is none, hasnt been set
-            if algo_start <= Current_Date and algo_end <= Current_Date:
-                InactiveStockAlgorithms.append(stock_algo)
-        else:
-            if algo_start <= Current_Date:
-                InactiveStockAlgorithms.append(stock_algo)
+        if algo_start < Current_Date and algo_end < Current_Date:
+            InactiveStockAlgorithms.append(stock_algo)
 
     return InactiveStockAlgorithms

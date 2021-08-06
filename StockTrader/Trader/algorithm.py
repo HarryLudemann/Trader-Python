@@ -10,6 +10,7 @@ class Algorithm(ABC):
     Data_Source = ""
     Adjusted = False
     Interval = ""
+    Save_Data = False
 
     # Setter
     def setName(self, name):

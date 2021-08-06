@@ -2,6 +2,28 @@ import yfinance as yf
 import pandas as pd
 import os
 
+def Get_YFinance_Stock(ticker, start_date, end_date, interval):  
+    """passed ticker, interval and adjusted calls appropraite api, returns df"""
+    if interval == '1m':
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif interval == '5m':
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif interval == '15m':
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif interval== '30m':
+        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
+    elif interval == '60m':
+        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
+    elif interval == '1d':
+        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
+    elif interval == '1w':
+        stock_df = Get_Yfinance_Date('1wk', [ticker], start_date, end_date)
+    elif interval == '1M':
+        stock_df = Get_Yfinance_Date('1mo', [ticker], start_date, end_date)
+
+    # rename column names
+    stock_df.columns = ['open', 'high', 'low', 'vlose', 'volume']
+    return stock_df
 
 def Get_Yfinance_Date(interval, tickers, start_date, end_date):
     """
