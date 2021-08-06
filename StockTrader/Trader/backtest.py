@@ -17,28 +17,28 @@ def BackTest(algorithm):
         start_date = stock_df['timestamp'].iloc[0]
         end_date = stock_df['timestamp'].iloc[-1]
 
-        print('Backtesting:', algorithm.Symbol, ':', start_date, 'to', end_date)
+        print('Backtesting:', algorithm.Symbol, ':', start_date, 'to', end_date, 'interval:', algorithm.Interval)
         # iterate over each stock and pass tuple to algorithms on_data method
         for stock in stock_df.iterrows():
             algorithm.on_data(stock)
 
         if algorithm.Save_Data:
             stock_df.to_csv('Live-Data/Stock/' + algorithm.Name.strip() + '.csv')
-        print('Finished', algorithm.Symbol, ':', start_date, 'to', end_date)
+        print('Finished', algorithm.Name, algorithm.Symbol, ':', start_date, 'to', end_date, 'interval:', algorithm.Interval)
 
 
     elif algorithm.Data_Source == 'YFinance':   # if using YFinance 
         stock_df = Data.Get_YFinance_Stock(algorithm.Symbol, algorithm.StartDate, algorithm.EndDate, algorithm.Interval)
-        # get first and last value
-        start_date = stock_df.index[0]
-        end_date = stock_df.index[-1]
+        if algorithm.Save_Data:
+            stock_df.to_csv('Live-Data/Stock/' + algorithm.Name.strip() + '.csv')
 
-        print('Backtesting:', algorithm.Symbol, ':', start_date, 'to', end_date)
+        # get first and last value
+        start_date = stock_df.index[0].strftime('%Y-%m-%d')
+        end_date = stock_df.index[-1].strftime('%Y-%m-%d')
+
+        print('Backtesting:', algorithm.Symbol, ':', start_date, 'to', end_date, 'interval:', algorithm.Interval)
         # iterate over each stock and pass tuple to algorithms on_data method
         for stock in stock_df.iterrows():
             algorithm.on_data(stock)
 
-        if algorithm.Save_Data:
-            stock_df.to_csv('Live-Data/Stock/' + algorithm.Name.strip() + '.csv')
-
-        print('Finished', algorithm.Symbol, ':', start_date, 'to', end_date)
+        print('Finished', algorithm.Name, algorithm.Symbol, ':', start_date, 'to', end_date, 'interval:', algorithm.Interval)

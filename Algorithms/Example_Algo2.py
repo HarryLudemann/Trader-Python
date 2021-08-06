@@ -15,19 +15,20 @@ class StockAlgorithm(Trader.Algorithm):
     """ Example Algorithm Backtesting """
 
     def Init(self):
+        self.Back_Test = True
         self.Name = "Example Stock Strategy2"
         self.Symbol = "AMZN"
-        self.StartDate = '06/01/2020' # current time
-        self.EndDate = '06/01/2021' # current time
+        self.StartDate = '2020-06-01' # current time
+        self.EndDate = '2021-06-01' # current time
         self.Cash = 100000
-        self.Data_Source = 'YFinance'
+        self.Data_Source = 'AlphaV'
         self.Adjusted = False
         self.Interval = "1m"
         self.Save_Data = True
 
     def on_data(self, data):
         # print open item in data tuple
-        print(data[1]['Open'])
+        print(data[1]['open'])
 
 
 

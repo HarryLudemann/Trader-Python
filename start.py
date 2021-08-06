@@ -26,7 +26,7 @@ if not os.path.exists('Live-Data'):                           # Create folder to
 
 Algorithms = Helper.Load_Algorithms()                    # list of Algorithm Objects from Algorithms dir
 
-# backtest methods
+# backtest methods where start and end date are before current date
 InActive_Algorithms = Helper.Loaf_Inactive_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) # list inactive algo obj
 print("Starting Backtesting:")
 for algorithm in InActive_Algorithms:

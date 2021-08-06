@@ -10,6 +10,8 @@ def Get_YFinance_Stock(ticker, start_date, end_date, interval):
         stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
     elif interval == '15m':
         stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif start_date == None or end_date == None:
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
     elif interval== '30m':
         stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
     elif interval == '60m':
@@ -22,7 +24,7 @@ def Get_YFinance_Stock(ticker, start_date, end_date, interval):
         stock_df = Get_Yfinance_Date('1mo', [ticker], start_date, end_date)
 
     # rename column names
-    stock_df.columns = ['open', 'high', 'low', 'vlose', 'volume']
+    stock_df.columns = ['open', 'high', 'low', 'close', 'volume']
     return stock_df
 
 def Get_Yfinance_Date(interval, tickers, start_date, end_date):

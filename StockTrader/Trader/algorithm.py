@@ -4,13 +4,14 @@ class Algorithm(ABC):
     """ Abstract class to store algorithm infomation and functions """
     Name = ""
     Symbol = ""
-    StartDate = ""
+    StartDate = None
     EndDate = None
     Cash = 0
     Data_Source = ""
     Adjusted = False
     Interval = ""
     Save_Data = False
+    Back_Test = False
 
     # Setter
     def setName(self, name):
