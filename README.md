@@ -11,20 +11,20 @@ ALPHA_VANTAGE_KEY=eafaapikey
 ### Creating Algorithms
 Example algorithms in Algorithms folder      
 ##### Data Sources: 
-    **YFinance** - Python module YFinance retrieving yahoo information (Doesnt use start/end date when using a minute interval auto set to get last 7 days of info)     
-    **AlphaV** - Get information from Alpha Vantage API (Doesnt use start/end date used against all info retreived)     
+    **YFinance** - Python module YFinance retrieving yahoo information (doesn't use start/end date when using a minute interval auto set to get last 7 days of info)     
+    **AlphaV** - Get information from Alpha Vantage API (doesn't use start/end date used against all info retrieved)     
      
 ##### Init Method:     
     Used to set fields
     **Name**  =                     # Name of algorithm     
     **Symbol** =                    # Stock Ticker     
-    **StartDate** =                 # Start Date for algorithm (Some Datasources don't use)     
-    **EndDate** =                   # End Date for algorithm (Some Datasources don't use)     
+    **StartDate** =                 # Start Date for algorithm (Some Data sources don't use)     
+    **EndDate** =                   # End Date for algorithm (Some Data sources don't use)     
     **Cash** =                      # Cash allowed for algorithm to use     
-    **Data_Source** =               # Data Source for stock infomation (Check Data sources)     
-    **Adjusted** =                  # Wether to use Adjusted data (Some Datasources don't use)  - Default False     
+    **Data_Source** =               # Data Source for stock information (Check Data sources)     
+    **Adjusted** =                  # Wether to use Adjusted data (Some Data sources don't use)  - Default False     
     **Interval** =                  # Interval for data eg 1m, 5m, 1d, 1m     
-    **Save_Data** =                 # Wether to save the infomation collected for algorithm  - Default False     
+    **Save_Data** =                 # Wether to save the information collected for algorithm  - Default False     
     **Back_Test** =                 # Wether to the strategy is to back test or to run  - Default False     
 
 ##### on_data Method:  

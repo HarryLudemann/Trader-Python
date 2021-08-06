@@ -2,16 +2,16 @@ from abc import ABC, abstractmethod
 
 class Algorithm(ABC):
     """ Abstract class to store algorithm infomation and functions """
-    Name = ""
-    Symbol = ""
-    StartDate = None
-    EndDate = None
-    Cash = 0
-    Data_Source = ""
-    Adjusted = False
-    Interval = ""
-    Save_Data = False
-    Back_Test = False
+    Name = ""                   # Name of algorithm
+    Symbol = ""                 # Stock Ticker
+    StartDate = None            # Start Date for algorithm (Some Datasources don't use)
+    EndDate = None              # End Date for algorithm (Some Datasources don't use)
+    Cash = 0                    # Cash allowed for algorithm to use
+    Data_Source = ""            # Data Source for stock infomation (Check Data sources)
+    Adjusted = False            # Wether to use Adjusted data (Some Datasources don't use)  - Default False
+    Interval = ""               # Interval for data eg 1m, 5m, 1d, 1m
+    Save_Data = False           # Wether to save the infomation collected for algorithm  - Default False
+    Back_Test = False           # Wether to the strategy is to back test or to run  - Default False
 
     # Setter
     def setName(self, name):
