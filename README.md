@@ -64,6 +64,25 @@ ALPHA_VANTAGE_KEY=eafaapikey
     </tbody>
 </table>
 
+
+##### Trader Functions
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>File</th>
+            <th>Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>BackTest</td>
+            <td>Trader/backtest</td>
+            <td>Given algorithm object back tests</td>
+        </tr>
+    </tbody>
+</table>
+
 ##### Data Functions
 <table>
     <thead>

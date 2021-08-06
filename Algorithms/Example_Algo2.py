@@ -2,7 +2,6 @@
 import os
 import sys
 import inspect
-import datetime
 
 # move directory to parent 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
