@@ -24,8 +24,9 @@ class StockAlgorithm(Trader.Algorithm):
         self.Adjusted = False
         self.Interval = "1m"
 
-    def on_data(self):
-        print(self.Symbol)
+    def on_data(self, data):
+        # print open item in data tuple
+        print(data[1]['open'])
 
 
 

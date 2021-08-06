@@ -34,8 +34,8 @@ class Algorithm(ABC):
         pass
 
     @abstractmethod
-    def on_data(self):
-        """ Abstract method to define what happens on new data """
+    def on_data(self, data):
+        """ Abstract method to define what happens on new data, given tuple of data (timestrap, ohlc and volume) """
         pass
 
 

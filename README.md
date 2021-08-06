@@ -56,6 +56,11 @@ ALPHA_VANTAGE_KEY=eafaapikey
             <td>Helper/load_algorithms</td>
             <td>given all algorithms list and current data, returns list of active Algorithm objects</td>
         </tr>
+        <tr>
+            <td>Loaf_Inactive_Algorithms</td>
+            <td>Helper/load_algorithms</td>
+            <td>given all algorithms list and current data, returns list of inactive Algorithm objects</td>
+        </tr>
     </tbody>
 </table>
 

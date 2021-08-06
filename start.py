@@ -1,7 +1,8 @@
 # Modules
 import os           # for file operations
 import time         # for sleep - scheduler
-import datetime     # get current date
+from datetime import datetime     # get current date
+from pytz import timezone   # timezones
 
 # Custom Modules
 from StockTrader import Helper
@@ -9,8 +10,9 @@ from StockTrader import Data
 
 Using_Free_Alpha_Vantage = True         # to signal rate limiting to prevent passing limits
 
-START_DATE = datetime.datetime.now().strftime("%Y-%m-%d")  
-START_TIME = time.time()
+START_DATE = datetime.now().strftime("%Y-%m-%d")  
+START_TIME = time.time()    # used for scheduler
+EST_TIME = datetime.now( timezone('EST') ).strftime("%H:%M:%S")    # get us eastern time
 TICKERS = Helper.Get_Tickers()  
 
 # Initialize 
@@ -24,11 +26,39 @@ if not os.path.exists('Live-Data'):                           # Create folder to
 Algorithms = Helper.Load_Algorithms()                    # list of Algorithm Objects from Algorithms dir
 #ActiveAlgorithms = Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE)   # list of Active Algorithms
 
-# run method
-while(Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) != []):
-    for algorithm in Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE):
-        algorithm.Run()
+# backtest methods
+InActive_Algorithms = Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE)
+for algorithm in InActive_Algorithms:
+    print("Starting Backtesting:")
+    # get data from appropriate source
+    if algorithm.Data_Source == 'AlphaV':   # if using Alpha Vantage
+        # get data from Alpha Vantage
+        stock_df = Data.Get_AlphaV_Stock(algorithm.Symbol, interval=algorithm.Interval, Adjusted=algorithm.Adjusted)
+        # get first and last item in timestamp column
+        start_date = stock_df['timestamp'].iloc[0]
+        end_date = stock_df['timestamp'].iloc[-1]
+        
 
+        print('Backtesting:', algorithm.Symbol, ':', start_date, 'to', end_date)
+        # iterate over each stock and pass tuple to algorithms on_data method
+        for stock in stock_df.iterrows():
+            algorithm.on_data(stock)
+        print('Backtesting Finished:', algorithm.Symbol, ':', start_date, 'to', end_date)
+
+
+
+
+
+# run method - loops while there is a active method
+while(Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) != []):
+    break # for testing, fun loop once
+    for algorithm in Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE):
+        if algorithm.Data_Source == 'AlphaV':   # if using Alpha Vantage
+            if EST_TIME >= '04:00:00' and EST_TIME <= '20:00:00':   # check if EST_TIME is within 4 am and 8 pm
+                    print("Within Trading Times")
+
+
+    break # for testing, fun loop once
     time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop
 
 

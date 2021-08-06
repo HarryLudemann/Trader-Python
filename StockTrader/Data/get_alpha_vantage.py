@@ -280,32 +280,34 @@ def Download_Alpha_Crypto_Monthly(symbol, market):
 
 
 def Get_AlphaV_Stock(ticker, interval=None, Adjusted=False):  
-    """Passed API"""
+    """passed ticker, interval and adjusted calls appropraite api, returns df"""
     if interval == '1m':
-        Get_Alpha_Stock_Intraday(ticker, '1min')
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '1min')
     elif interval == '5m':
-        Get_Alpha_Stock_Intraday(ticker, '5min')
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '5min')
     elif interval == '15m':
-        Get_Alpha_Stock_Intraday(ticker, '15min')
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '15min')
     elif interval== '30m':
-        Get_Alpha_Stock_Intraday(ticker, '30min')
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '30min')
     elif interval == '60m':
-        Get_Alpha_Stock_Intraday(ticker, '60min')
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '60min')
     # check if adjusted
     if Adjusted:
         if interval == '1d':
-            Get_Alpha_Stock_Daily_Adj(ticker)
+            stock_df = Get_Alpha_Stock_Daily_Adj(ticker)
         elif interval == '1w':
-            Get_Alpha_Stock_Weekly_Adj(ticker)
+            stock_df = Get_Alpha_Stock_Weekly_Adj(ticker)
         elif interval == '1M':
-            Get_Alpha_Stock_Monthly_Adj(ticker)
+            stock_df = Get_Alpha_Stock_Monthly_Adj(ticker)
     else:
         if interval == '1d':
-            Get_Alpha_Stock_Daily(ticker)
+            stock_df = Get_Alpha_Stock_Daily(ticker)
         elif interval == '1w':
-            Get_Alpha_Stock_Weekly(ticker)
+            stock_df = Get_Alpha_Stock_Weekly(ticker)
         elif interval == '1M':
-            Get_Alpha_Stock_Monthly(ticker)
+            stock_df = Get_Alpha_Stock_Monthly(ticker)
+
+    return stock_df
 
 
 
