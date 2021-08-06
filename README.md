@@ -8,6 +8,12 @@ Create .env file in main directory (containing start.py) with alpha vantage key 
 ALPHA_VANTAGE_KEY=eafaapikey
 ```
 
+### Documentation
+Example algorithms in Algorithms folder 
+**Data Sources:** 
+    **YFinance** - Python module YFinance retrieving yahoo information (Doesnt use start/end date when using a minute interval auto set to get last 7 days of info)
+    **AlphaV** - Get information from Alpha Vantage API (Doesnt use start/end date used against all info retreived)
+
 ### File Structure:
 * **StockTrader** - Contains Main Modules:
     * **Data** - Module to download data from different sources    

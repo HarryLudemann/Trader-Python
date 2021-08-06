@@ -27,7 +27,7 @@ if not os.path.exists('Live-Data'):                           # Create folder to
 Algorithms = Helper.Load_Algorithms()                    # list of Algorithm Objects from Algorithms dir
 
 # backtest methods where start and end date are before current date
-InActive_Algorithms = Helper.Loaf_Inactive_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) # list inactive algo obj
+InActive_Algorithms = Helper.Load_Inactive_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) # list inactive algo obj
 print("Starting Backtesting:")
 for algorithm in InActive_Algorithms:
     Trader.BackTest(algorithm)
@@ -38,14 +38,12 @@ print("Backtesting Finished")
 
 # run method - loops while there is a active method
 while(Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) != []):
-    break # for testing, fun loop once
+    break # for testing
     for algorithm in Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE):
         if algorithm.Data_Source == 'AlphaV':   # if using Alpha Vantage
             if EST_TIME >= '04:00:00' and EST_TIME <= '20:00:00':   # check if EST_TIME is within 4 am and 8 pm
                     print("Within Trading Times")
 
-
-    break # for testing, fun loop once
     time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop
 
 

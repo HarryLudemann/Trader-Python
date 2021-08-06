@@ -49,7 +49,7 @@ def Load_Active_Algorithms(All_Algorithms, Current_Date):
         
     return ActiveStockAlgorithms
 
-def Loaf_Inactive_Algorithms(All_Algorithms, Current_Date):
+def Load_Inactive_Algorithms(All_Algorithms, Current_Date):
     """ function to get all inactive classes in algorithms list into a returned list """
     # get list of stocks where current date is before start and end date
     InactiveStockAlgorithms = []      # list of Algorithm Objects that dates are within range
