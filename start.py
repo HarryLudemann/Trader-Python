@@ -31,10 +31,12 @@ Algorithms = Helper.Load_Algorithms()                    # list of Algorithm Obj
 
 # backtest methods where start and end date are before current date
 InActive_Algorithms = Helper.Load_Inactive_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) # list inactive algo obj
-print("Starting Backtesting:")
+print("Starting Backtesting:\n")
 for algorithm in InActive_Algorithms:
     Trader.BackTest(algorithm)
-print("Backtesting Finished")
+    algorithm.stats()
+    print('\n')
+print("\nBacktesting Finished")
 
 
 # run method - loops while there is a active method

@@ -34,8 +34,7 @@ class StockAlgorithm(Trader.StockAlgorithm):
     def on_data(self, data):
         # print open item in data tuple
         open_data.append(data[1]['open'])
-        print( len(open_data) )
 
     def stats(self):
-        print(self.Name, 'Finished with', self.Cash)
+        print(f'{self.Name} Finished with {str( len(open_data) )} lines of data')
 
