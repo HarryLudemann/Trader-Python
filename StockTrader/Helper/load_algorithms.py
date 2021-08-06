@@ -38,14 +38,15 @@ def Load_Active_Algorithms(All_Algorithms, Current_Date):
      # get list of stocks where current date is within start and end date (optional)
     ActiveStockAlgorithms = []      # list of Algorithm Objects that dates are within range
     for stock_algo in All_Algorithms:
-        algo_start = stock_algo.StartDate
-        algo_end = stock_algo.EndDate
-        if (algo_end != None):      # if end date is none, hasnt been set
-            if algo_start <= Current_Date and algo_end >= Current_Date:
-                ActiveStockAlgorithms.append(stock_algo)    # add active stock
-        else:
-            if algo_start <= Current_Date:
-                ActiveStockAlgorithms.append(stock_algo)    # add active stock
+        if stock_algo.Back_Test == False:
+            algo_start = stock_algo.StartDate
+            algo_end = stock_algo.EndDate
+            if (algo_end != None):      # if end date is none, hasnt been set
+                if algo_start <= Current_Date and algo_end >= Current_Date:
+                    ActiveStockAlgorithms.append(stock_algo)    # add active stock
+            else:
+                if algo_start <= Current_Date:
+                    ActiveStockAlgorithms.append(stock_algo)    # add active stock
         
     return ActiveStockAlgorithms
 
@@ -58,7 +59,7 @@ def Load_Inactive_Algorithms(All_Algorithms, Current_Date):
         algo_end = stock_algo.EndDate
         if stock_algo.Back_Test:
             InactiveStockAlgorithms.append(stock_algo)
-        elif algo_start < Current_Date and algo_end < Current_Date:
+        if algo_start < Current_Date and algo_end < Current_Date:
             InactiveStockAlgorithms.append(stock_algo)
 
     return InactiveStockAlgorithms

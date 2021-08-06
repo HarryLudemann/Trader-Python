@@ -21,7 +21,7 @@ class StockAlgorithm(Trader.Algorithm):
 
     def Init(self):
         self.Back_Test = True
-        self.Name = "Example Stock Strategy2"
+        self.Name = "Example Back Test"
         self.Symbol = "AMZN"
         self.StartDate = '2020-06-01' # current time
         self.EndDate = '2021-06-01' # current time
