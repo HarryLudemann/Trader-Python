@@ -29,6 +29,9 @@ def test_algorithm():
 
         def on_data(self):
             return self.Symbol
+            
+        def stats(self):
+            print(self.Name, 'Finished with', self.Cash)
 
     algo = TestAlgo()
     algo.Init()

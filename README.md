@@ -9,11 +9,13 @@ ALPHA_VANTAGE_KEY=eafaapikey
 ```
 
 ### Creating Algorithms
-Example algorithms in Algorithms folder      
+Create algorithms and store in Algorithm folder, currently contains examples, algorithms file can be named anything.
+
+#### StockAlgorithm(Trader.StockAlgorithm) Class:
 ##### Data Sources: 
     **YFinance** - Python module YFinance retrieving yahoo information (doesn't use start/end date when using a minute interval auto set to get last 7 days of info)     
     **AlphaV** - Get information from Alpha Vantage API (doesn't use start/end date used against all info retrieved)     
-     
+    
 ##### Init Method:     
     Used to set fields
     **Name**  =                     # Name of algorithm     

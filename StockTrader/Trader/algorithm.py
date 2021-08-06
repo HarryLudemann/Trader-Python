@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Algorithm(ABC):
+class StockAlgorithm(ABC):
     """ Abstract class to store algorithm infomation and functions """
     Name = ""                   # Name of algorithm
     Symbol = ""                 # Stock Ticker
@@ -40,12 +40,17 @@ class Algorithm(ABC):
         """ Abstract method to define what happens on new data, given tuple of data (timestrap, ohlc and volume) """
         pass
 
+    @abstractmethod
+    def stats(self):
+        """ Abstract method to define what stats to return """
+        pass
+
 
 
 
 
 if __name__ == '__main__':
-    class TestAlgo(Algorithm):
+    class TestAlgo(StockAlgorithm):
         """ Test Algorithm """
 
         def Init(self):
@@ -61,6 +66,8 @@ if __name__ == '__main__':
         def on_data(self):
             print(self.Symbol)
 
+        def stats(self):
+            print(self.Name, 'Finished with', self.Cash)
 
     test_algo = TestAlgo()
     test_algo.Init()

@@ -38,10 +38,10 @@ print("Backtesting Finished")
 
 
 # run method - loops while there is a active method
-print("Running Active Methods:")
-while(Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) != []):
-    for algorithm in Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE):
-        Trader.Run(algorithm)
+# print("Running Active Methods:")
+# while(Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) != []):
+#     for algorithm in Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE):
+#         Trader.Run(algorithm)
 
-    break # for testing only run once
-    time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop
+#     break # for testing only run once
+#     time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop

@@ -59,7 +59,7 @@ def Load_Inactive_Algorithms(All_Algorithms, Current_Date):
         algo_end = stock_algo.EndDate
         if stock_algo.Back_Test:
             InactiveStockAlgorithms.append(stock_algo)
-        if algo_start < Current_Date and algo_end < Current_Date:
+        elif algo_start < Current_Date and algo_end < Current_Date:
             InactiveStockAlgorithms.append(stock_algo)
 
     return InactiveStockAlgorithms

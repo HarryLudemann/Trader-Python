@@ -16,7 +16,7 @@ from StockTrader import Trader
 
 open_data = []
 
-class StockAlgorithm(Trader.Algorithm):
+class StockAlgorithm(Trader.StockAlgorithm):
     """ Example Algorithm Backtesting """
 
     def Init(self):
@@ -36,5 +36,6 @@ class StockAlgorithm(Trader.Algorithm):
         open_data.append(data[1]['open'])
         print( len(open_data) )
 
-
+    def stats(self):
+        print(self.Name, 'Finished with', self.Cash)
 

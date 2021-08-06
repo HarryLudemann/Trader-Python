@@ -12,7 +12,7 @@ sys.path.insert(0, parentdir)
 # custom modules
 from StockTrader import Trader
 
-class StockAlgorithm(Trader.Algorithm):
+class StockAlgorithm(Trader.StockAlgorithm):
     """ Example Algorithm to Run """
 
     def Init(self):
@@ -28,6 +28,9 @@ class StockAlgorithm(Trader.Algorithm):
     def on_data(self, data):
         # print open item in data tuple
         print(data[1]['open'])
+
+    def stats(self):
+        print(self.Name, 'Finished with', self.Cash)
 
 
 
