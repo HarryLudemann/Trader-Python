@@ -37,8 +37,8 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
 
 #### Algorithm(Trader.ForexAlgorithm) Class:
 ##### Data Sources: 
-    **YFinance** - Python module YFinance retrieving yahoo information (Back testing doesn't use start/end date when using a minute interval (1m, 5m, 15m) auto set to get last 7 days of info)     
-    **AlphaV** - Get information from Alpha Vantage API (back testing doesn't use start/end date used against all info retrieved)     
+    **YFinance** - Python module YFinance retrieving yahoo information    
+    **AlphaV** - Get information from Alpha Vantage API    
     
 ##### Init Method:     
     Used to set fields
@@ -333,3 +333,22 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
         </tr>
     </tbody>
 </table>
+
+
+### Development:
+
+Get_{API}_{Stock/Forex/Crypto} functions return df:
+```
+                      open   high    low  close
+Datetime
+2021-08-06 21:28:00  1.426  1.426  1.426  1.426
+2021-08-06 21:27:00  1.426  1.426  1.426  1.426
+2021-08-06 21:26:00  1.426  1.426  1.426  1.426
+2021-08-06 21:25:00  1.426  1.426  1.426  1.426
+2021-08-06 21:24:00  1.426  1.426  1.426  1.426
+2021-08-06 21:23:00  1.426  1.426  1.426  1.426
+2021-08-06 21:22:00  1.426  1.426  1.426  1.426
+2021-08-06 21:21:00  1.426  1.426  1.426  1.426
+2021-08-06 21:20:00  1.426  1.426  1.426  1.426
+2021-08-06 21:19:00  1.426  1.426  1.426  1.426
+```
