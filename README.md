@@ -1,5 +1,5 @@
 # Stock-Trader
-[![Python Tests](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml)
+[![Python Tests](https://github.com/HarryLudemann/Stock-Trader-Python/actions/workflows/python-package.yml/badge.svg)](https://github.com/HarryLudemann/Stock-Trader/actions/workflows/python-package.yml)
 
 ### Setup:
 ##### Create .env:
