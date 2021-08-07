@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class StockAlgorithm(ABC):
-    """ Abstract class to store algorithm infomation and functions """
+    """ Abstract class to store algorithm infomation and functions for stock algorithms """
     Name = ""                   # Name of algorithm
     Symbol = ""                 # Stock Ticker
     StartDate = None            # Start Date for algorithm (Some Datasources don't use)
@@ -47,8 +47,9 @@ class StockAlgorithm(ABC):
 
 
 
+
 class ForexAlgorithm(ABC):
-    """ Abstract class to store algorithm infomation and functions """
+    """ Abstract class to store algorithm infomation and functions for forex algorithms"""
     Active = True               # Signal wether to run/backtest
     Name = ""                   # Name of algorithm
     From_Currency = ""          # From Currency Ticker

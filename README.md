@@ -11,7 +11,7 @@ ALPHA_VANTAGE_KEY=eafaapikey
 ### Creating Algorithms:
 Create algorithms and store in Algorithm folder, currently contains examples, algorithms file can be named anything.
 
-#### StockAlgorithm(Trader.StockAlgorithm) Class:
+#### Algorithm(Trader.StockAlgorithm) Class:
 ##### Data Sources: 
     **YFinance** - Python module YFinance retrieving yahoo information (Back testing doesn't use start/end date when using a minute interval (1m, 5m, 15m) auto set to get last 7 days of info)     
     **AlphaV** - Get information from Alpha Vantage API (back testing doesn't use start/end date used against all info retrieved)     
@@ -28,6 +28,31 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
     **Interval** =                  # Interval for data eg 1m, 5m, 1d, 1m     
     **Save_Data** =                 # Wether to save the information collected for algorithm  - Default False     
     **Back_Test** =                 # Wether to the strategy is to back test or to run  - Default False     
+
+##### on_data Method:  
+    Method passed data tuple, method called on new data
+
+##### stats Method:  
+    Method Called when finished running or back testing, passed nothing
+
+#### Algorithm(Trader.ForexAlgorithm) Class:
+##### Data Sources: 
+    **YFinance** - Python module YFinance retrieving yahoo information (Back testing doesn't use start/end date when using a minute interval (1m, 5m, 15m) auto set to get last 7 days of info)     
+    **AlphaV** - Get information from Alpha Vantage API (back testing doesn't use start/end date used against all info retrieved)     
+    
+##### Init Method:     
+    Used to set fields
+    Active =                        # Signal wether to run/backtest
+    Name =                          # Name of algorithm
+    From_Currency =                 # From Currency Ticker
+    To_Currency =                   # To Currency Ticker
+    StartDate =                     # Start Date for algorithm (Some Datasources don't use)
+    EndDate =                       # End Date for algorithm (Some Datasources don't use)
+    Cash =                          # Cash allowed for algorithm to use
+    Data_Source =                   # Data Source for stock infomation (Check Data sources)
+    Interval =                      # Interval for data eg 1m, 5m, 1d, 1m
+    Save_Data =                     # Wether to save the infomation collected for algorithm  - Default False
+    Back_Test =                     # Wether to the strategy is to back test or to run  - Default False
 
 ##### on_data Method:  
     Method passed data tuple, method called on new data

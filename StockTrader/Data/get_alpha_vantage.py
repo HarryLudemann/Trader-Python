@@ -101,6 +101,10 @@ def Get_AlphaV_Forex(from_currency, to_currency, interval):
     elif interval == '1M':
         forex_df = Get_Alpha_Forex_FX_Monthly(from_currency, to_currency)
 
+    # rename timestamp column to Datetime
+    forex_df.rename(columns={'timestamp':'Datetime'}, inplace=True)
+    # use Datetime column as index
+    forex_df.set_index('Datetime', inplace=True)
     return forex_df
 
 
@@ -135,7 +139,11 @@ def Get_AlphaV_Stock(ticker, interval=None, Adjusted=False):
             stock_df = Get_Alpha_Stock_Weekly(ticker)
         elif interval == '1m':
             stock_df = Get_Alpha_Stock_Monthly('1M')
-
+            
+    # rename timestamp column to Datetime
+    stock_df.rename(columns={'timestamp':'Datetime'}, inplace=True)
+    # use Datetime column as index
+    stock_df.set_index('Datetime', inplace=True)
     return stock_df
 
 

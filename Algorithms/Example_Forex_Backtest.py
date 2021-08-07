@@ -25,7 +25,7 @@ class Algorithm(Trader.ForexAlgorithm):
         self.From_Currency = "USD"          # From Currency Ticker
         self.To_Currency = "NZD"            # To Current Ticker
         self.Cash = 100000                    # Cash allowed for algorithm to use
-        self.Data_Source = "YFinance"            # Data Source for stock infomation (Check Data sources)
+        self.Data_Source = "AlphaV"            # Data Source for stock infomation (Check Data sources)
         self.Interval = "1m"               # Interval for data eg 1m, 5m, 1d, 1m
         self.StartDate = '2020-06-01'
         self.EndDate = '2021-06-01'
