@@ -12,8 +12,6 @@ from StockTrader import Data
 
 def BackTest(algorithm):
     """ Method to backtest given algorithm object, gets data and passes each row to on_data method """
-    df = Data.DataFrame()                           # empty dataframe
-
     if hasattr(algorithm, 'Symbol'):                # if algorithm is stock algo
         if algorithm.Data_Source == 'AlphaV':       # if using Alpha Vantage
             df = Data.Get_AlphaV_Stock(algorithm.Symbol, interval=algorithm.Interval, Adjusted=algorithm.Adjusted)
@@ -32,8 +30,8 @@ def BackTest(algorithm):
             df.to_csv('Live-Data/Algorithms/' + algorithm.Name + '.csv')
             df.to_csv('Live-Data/Forex/' + algorithm.From_Currency + '_' + algorithm.To_Currency + '_'+ algorithm.Interval + '.csv')
         
-    start_date = df.index[0].strftime('%Y-%m-%d')   
-    end_date = df.index[-1].strftime('%Y-%m-%d')
+    start_date = df.index[0]   
+    end_date = df.index[-1]
 
     print(f'Back Testing: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval}')
 
