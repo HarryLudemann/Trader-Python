@@ -24,6 +24,7 @@ if not os.path.exists('Live-Data'):                           # Create folder to
     os.makedirs('Live-Data/Stock')
     os.makedirs('Live-Data/Forex')
     os.makedirs('Live-Data/Crypto')
+    os.makedirs('Live-Data/Algrithms')
 
 
 Algorithms = Helper.Load_Algorithms()                    # list of Algorithm Objects from Algorithms dir

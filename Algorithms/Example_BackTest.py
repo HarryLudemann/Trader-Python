@@ -20,7 +20,7 @@ class Algorithm(Trader.StockAlgorithm):
     """ Example Algorithm Backtesting """
 
     def Init(self):
-        self.Active = True
+        self.Active = False
         self.Back_Test = True
         self.Name = "Example Back Test"
         self.Symbol = "AMZN"

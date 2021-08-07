@@ -56,8 +56,12 @@ def Get_Alpha_Forex_FX_Monthly(from_symbol, to_symbol):
     CSV_URL = f'https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol={from_symbol}&to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv'
     return pd.read_csv(CSV_URL)   
 
+   
+
 
 # retreive crypto infomation methods:
+
+
 
 
 def Get_Alpha_Crypto_Exchange_Rate(from_currency, to_currency):
@@ -71,81 +75,6 @@ def Get_Alpha_Crypto_Exchange_Rate(from_currency, to_currency):
     response.close()
     data = response.json()
     return data['Realtime Currency Exchange Rate']['5. Exchange Rate'], data['Realtime Currency Exchange Rate']['8. Bid Price'], data['Realtime Currency Exchange Rate']['9. Ask Price']
-
-
-
-def Get_AlphaV_Forex(from_currency, to_currency, interval):  
-    """passed ticker, interval and adjusted calls appropraite api, returns df"""
-    forex_df = pd.DataFrame()
-    if interval == '1m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '1min')
-
-    elif interval == '5m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '5min')
-
-    elif interval == '15m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '15min')
-
-    elif interval== '30m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '30min')
-
-    elif interval== '60m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '60min')
-
-    elif interval == '1d':
-        forex_df = Get_Alpha_Forex_FX_Daily(from_currency, to_currency)
-
-    elif interval == '1w':
-        forex_df = Get_Alpha_Forex_FX_Weekly(from_currency, to_currency)
-
-    elif interval == '1M':
-        forex_df = Get_Alpha_Forex_FX_Monthly(from_currency, to_currency)
-
-    # rename timestamp column to Datetime
-    forex_df.rename(columns={'timestamp':'Datetime'}, inplace=True)
-    # use Datetime column as index
-    forex_df.set_index('Datetime', inplace=True)
-    return forex_df
-
-
-
-# stock get methods
-
-
-def Get_AlphaV_Stock(ticker, interval=None, Adjusted=False):  
-    """passed ticker, interval and adjusted calls appropraite api, returns df"""
-    if interval == '1m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '1min')
-    elif interval == '5m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '5min')
-    elif interval == '15m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '15min')
-    elif interval== '30m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '30min')
-    elif interval == '60m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '60min')
-    # check if adjusted
-    if Adjusted:
-        if interval == '1d':
-            stock_df = Get_Alpha_Stock_Daily_Adj(ticker)
-        elif interval == '1w':
-            stock_df = Get_Alpha_Stock_Weekly_Adj(ticker)
-        elif interval == '1m':
-            stock_df = Get_Alpha_Stock_Monthly_Adj('1M')
-    else:
-        if interval == '1d':
-            stock_df = Get_Alpha_Stock_Daily(ticker)
-        elif interval == '1w':
-            stock_df = Get_Alpha_Stock_Weekly(ticker)
-        elif interval == '1m':
-            stock_df = Get_Alpha_Stock_Monthly('1M')
-            
-    # rename timestamp column to Datetime
-    stock_df.rename(columns={'timestamp':'Datetime'}, inplace=True)
-    # use Datetime column as index
-    stock_df.set_index('Datetime', inplace=True)
-    return stock_df
-
 
 
 
@@ -233,4 +162,78 @@ def Get_Alpha_Stock_Monthly_Adj(ticker):
     ALPHA_VANTAGE_KEY = config('ALPHA_VANTAGE_KEY') # import Alpha Vantage Key from .env file
     CSV_URL = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&datatype=csv&symbol={ticker}&apikey={ALPHA_VANTAGE_KEY}'
     return pd.read_csv(CSV_URL)   
+
+
+
+def Get_AlphaV_Forex(from_currency, to_currency, interval):  
+    """passed ticker, interval and adjusted calls appropraite api, returns df"""
+    forex_df = pd.DataFrame()
+    if interval == '1m':
+        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '1min')
+
+    elif interval == '5m':
+        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '5min')
+
+    elif interval == '15m':
+        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '15min')
+
+    elif interval== '30m':
+        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '30min')
+
+    elif interval== '60m':
+        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '60min')
+
+    elif interval == '1d':
+        forex_df = Get_Alpha_Forex_FX_Daily(from_currency, to_currency)
+
+    elif interval == '1w':
+        forex_df = Get_Alpha_Forex_FX_Weekly(from_currency, to_currency)
+
+    elif interval == '1M':
+        forex_df = Get_Alpha_Forex_FX_Monthly(from_currency, to_currency)
+
+    # rename timestamp column to Datetime
+    forex_df.rename(columns={'timestamp':'Datetime'}, inplace=True)
+    # use Datetime column as index
+    forex_df.set_index('Datetime', inplace=True)
+    return forex_df
+
+
+
+# stock get methods
+
+
+def Get_AlphaV_Stock(ticker, interval=None, Adjusted=False):  
+    """passed ticker, interval and adjusted calls appropraite api, returns df"""
+    if interval == '1m':
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '1min')
+    elif interval == '5m':
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '5min')
+    elif interval == '15m':
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '15min')
+    elif interval== '30m':
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '30min')
+    elif interval == '60m':
+        stock_df = Get_Alpha_Stock_Intraday(ticker, '60min')
+    # check if adjusted
+    if Adjusted:
+        if interval == '1d':
+            stock_df = Get_Alpha_Stock_Daily_Adj(ticker)
+        elif interval == '1w':
+            stock_df = Get_Alpha_Stock_Weekly_Adj(ticker)
+        elif interval == '1m':
+            stock_df = Get_Alpha_Stock_Monthly_Adj('1M')
+    else:
+        if interval == '1d':
+            stock_df = Get_Alpha_Stock_Daily(ticker)
+        elif interval == '1w':
+            stock_df = Get_Alpha_Stock_Weekly(ticker)
+        elif interval == '1m':
+            stock_df = Get_Alpha_Stock_Monthly('1M')
+            
+    # rename timestamp column to Datetime
+    stock_df.rename(columns={'timestamp':'Datetime'}, inplace=True)
+    # use Datetime column as index
+    stock_df.set_index('Datetime', inplace=True)
+    return stock_df
 
