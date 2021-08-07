@@ -16,10 +16,11 @@ from StockTrader import Trader
 
 open_data = []
 
-class StockAlgorithm(Trader.StockAlgorithm):
+class Algorithm(Trader.StockAlgorithm):
     """ Example Algorithm Backtesting """
 
     def Init(self):
+        self.Active = True
         self.Back_Test = True
         self.Name = "Example Back Test"
         self.Symbol = "AMZN"

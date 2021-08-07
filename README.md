@@ -8,13 +8,13 @@ Create .env file in main directory (containing start.py) with alpha vantage key 
 ALPHA_VANTAGE_KEY=eafaapikey
 ```
 
-### Creating Algorithms
+### Creating Algorithms:
 Create algorithms and store in Algorithm folder, currently contains examples, algorithms file can be named anything.
 
 #### StockAlgorithm(Trader.StockAlgorithm) Class:
 ##### Data Sources: 
-    **YFinance** - Python module YFinance retrieving yahoo information (doesn't use start/end date when using a minute interval auto set to get last 7 days of info)     
-    **AlphaV** - Get information from Alpha Vantage API (doesn't use start/end date used against all info retrieved)     
+    **YFinance** - Python module YFinance retrieving yahoo information (Back testing doesn't use start/end date when using a minute interval (1m, 5m, 15m) auto set to get last 7 days of info)     
+    **AlphaV** - Get information from Alpha Vantage API (back testing doesn't use start/end date used against all info retrieved)     
     
 ##### Init Method:     
     Used to set fields
@@ -32,6 +32,17 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
 ##### on_data Method:  
     Method passed data tuple, method called on new data
 
+##### stats Method:  
+    Method Called when finished running or back testing, passed nothing
+
+
+### Limitations
+
+##### Back Testing
+* Yfinance intervals: 1m, 5m, 15m, 30m, 60m, 1d, 1w, 1m
+* Yfinance Back testing doesn't use start/end date when using a minute interval (1m, 5m, 15m) auto set to get last 7 days of info
+* Alpha Vantage Intervals: 1m, 5m, 15m, 30, 60m, 1d, 1w, 1m
+* Alpha Vantage Back testing doesn't use start and end dates
 
 
 ### File Structure:
@@ -104,7 +115,7 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
         <tr>
             <td>BackTest</td>
             <td>Trader/backtest</td>
-            <td>Given algorithm object back tests</td>
+            <td>Given algorithm object back tests, returns nothing</td>
         </tr>
     </tbody>
 </table>
@@ -150,6 +161,16 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
             <td>Given tickers, Gets daily data and adds to existing daily data</td>
         </tr>
         <tr>
+            <td>Get_YFinance_Stock</td>
+            <td>Data/get_yfinance</td>
+            <td>Given tickers, start and end date and interval Gets appropriate data and returns df</td>
+        </tr>
+        <tr>
+            <td>Get_YFinance_Forex</td>
+            <td>Data/get_yfinance</td>
+            <td>Given to and from data, interval and start and end date Gets appropriate data and returns df</td>
+        </tr>
+        <tr>
             <td>Get_Yahoo_Trending</td>
             <td>Data/get_yahoo</td>
             <td>No args, scrapes trending stocks and information returns list of stock dictionary's</td>
@@ -157,107 +178,107 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
         <tr>
             <td>Get_AlphaV_Stock</td>
             <td>Data/get_alpha_vantage</td>
+            <td>Given ticker, optionally interval optionally adjusted boolean returns df of stock data</td>
+        </tr>
+        <tr>
+            <td>Get_AlphaV_Forex</td>
+            <td>Data/get_alpha_vantage</td>
+            <td>Given from and to currency and interval returns df of stock data</td>
+        </tr>
+        <tr>
+            <td>Get_AlphaV_Stock</td>
+            <td>Data/get_alpha_vantage</td>
             <td>Given ticker, interval and optionally adjusted boolean returns df of stock data</td>
         </tr>
         <tr>
-            <td>AlphaV_Stock_Controller</td>
+            <td>Get_Alpha_Stock_Intraday</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Algorithm object calls appropriate api to download information</td>
+            <td>Given Stock Ticker saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY api returns df</td>
         </tr>
         <tr>
-            <td>AlphaV_Stock_Downloader</td>
+            <td>Get_Alpha_Stock_Intraday_Ext</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Api name, ticker and optionally interval calls appropriate download function</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_INTRADAY_EXTENDED api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Intraday</td>
+            <td>Get_Alpha_Stock_Daily</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY api</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Intraday_Ext</td>
+            <td>Get_Alpha_Stock_Daily_Adj</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_INTRADAY_EXTENDED api</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY_ADJUSTED api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Daily</td>
+            <td>Get_Alpha_Stock_Weekly</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY api</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Daily_Adj</td>
+            <td>Get_Alpha_Stock_Weekly_Adj</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_DAILY_ADJUSTED api</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY_ADJUSTED api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Weekly</td>
+            <td>Get_Alpha_Stock_Monthly</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY api</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Weekly_Adj</td>
+            <td>Get_Alpha_Stock_Monthly_Adj</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_WEEKLY_ADJUSTED api</td>
+            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Monthly</td>
+            <td>Get_Alpha_Forex_Exchange_Rate</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY api</td>
+            <td>Given from and to currency saves  data to Live_data using alpha vantages CURRENCY_EXCHANGE_RATE api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Stock_Monthly_Adj</td>
+            <td>Get_Alpha_Forex_FX_Intraday</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given Stock Ticker saves  data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api</td>
+            <td>Given from, to currency and interval saves  data to Live_data using alpha vantages FX_INTRADAY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Forex_Exchange_Rate</td>
+            <td>Get_Alpha_Forex_FX_Daily</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given from and to currency saves  data to Live_data using alpha vantages CURRENCY_EXCHANGE_RATE api</td>
+            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_DAILY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Forex_FX_Intraday</td>
+            <td>Get_Alpha_Forex_FX_Weekly</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given from, to currency and interval saves  data to Live_data using alpha vantages FX_INTRADAY api</td>
+            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_WEEKLY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Forex_FX_Daily</td>
+            <td>Get_Alpha_Forex_FX_Monthly</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_DAILY api</td>
-        </tr>
-        <tr>
-            <td>Download_Alpha_Forex_FX_Weekly</td>
-            <td>Data/get_alpha_vantage</td>
-            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_WEEKLY api</td>
-        </tr>
-        <tr>
-            <td>Download_Alpha_Forex_FX_Monthly</td>
-            <td>Data/get_alpha_vantage</td>
-            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_MONTHLY api</td>
+            <td>Given from and to symbol saves  data to Live_data using alpha vantages FX_MONTHLY api returns df</td>
         </tr>
         <tr>
             <td>Get_Alpha_Crypto_Exchange_Rate</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given symbol and market returns 3 strings from alpha vantages CURRENCY_EXCHANGE_RATE api</td>
+            <td>Given symbol and market returns 3 strings from alpha vantages CURRENCY_EXCHANGE_RATE api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Crypto_Intraday</td>
+            <td>Get_Alpha_Crypto_Intraday</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given symbol market and interval saves  data to Live_data using alpha vantages CRYPTO_INTRADAY api</td>
+            <td>Given symbol market and interval saves  data to Live_data using alpha vantages CRYPTO_INTRADAY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Crypto_Daily</td>
+            <td>Get_Alpha_Crypto_Daily</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given symbol and market saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_DAILY api</td>
+            <td>Given symbol and market saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_DAILY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Crypto_Weekly</td>
+            <td>Get_Alpha_Crypto_Weekly</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given symbol and market saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_WEEKLY api</td>
+            <td>Given symbol and market saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_WEEKLY api returns df</td>
         </tr>
         <tr>
-            <td>Download_Alpha_Crypto_Monthly</td>
+            <td>Get_Alpha_Crypto_Monthly</td>
             <td>Data/get_alpha_vantage</td>
-            <td>Given symbol and market  saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_MONTHLY api</td>
+            <td>Given symbol and market  saves  data to Live_data using alpha vantages DIGITAL_CURRENCY_MONTHLY api returns df</td>
         </tr>
     </tbody>
 </table>

@@ -25,7 +25,7 @@ def Load_Algorithms():
             module = file[:-3]
             # import file as module from Algorithms directory
             module = __import__(module)
-            test_algo = module.StockAlgorithm()
+            test_algo = module.Algorithm()
             test_algo.Init()
             algos.append(test_algo)
 
@@ -55,11 +55,11 @@ def Load_Inactive_Algorithms(All_Algorithms, Current_Date):
     # get list of stocks where current date is before start and end date
     InactiveStockAlgorithms = []      # list of Algorithm Objects that dates are within range
     for stock_algo in All_Algorithms:
-        algo_start = stock_algo.StartDate
-        algo_end = stock_algo.EndDate
+        # algo_start = stock_algo.StartDate
+        # algo_end = stock_algo.EndDate
         if stock_algo.Back_Test:
             InactiveStockAlgorithms.append(stock_algo)
-        elif algo_start < Current_Date and algo_end < Current_Date:
-            InactiveStockAlgorithms.append(stock_algo)
+        # elif algo_start < Current_Date and algo_end < Current_Date:
+        #     InactiveStockAlgorithms.append(stock_algo)
 
     return InactiveStockAlgorithms

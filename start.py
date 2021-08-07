@@ -27,16 +27,15 @@ if not os.path.exists('Live-Data'):                           # Create folder to
 
 
 Algorithms = Helper.Load_Algorithms()                    # list of Algorithm Objects from Algorithms dir
-
+Algorithms = [x for x in Algorithms if x.Active]         # remove algorithms where active = false
 
 # backtest methods where start and end date are before current date
-InActive_Algorithms = Helper.Load_Inactive_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) # list inactive algo obj
-print("Starting Backtesting:\n")
-for algorithm in InActive_Algorithms:
+Backtest_Algorithms = Helper.Load_Inactive_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) # list inactive algo obj
+print(f"\nStarting Backtesting\n")
+for algorithm in Backtest_Algorithms:
     Trader.BackTest(algorithm)
     algorithm.stats()
-    print('\n')
-print("\nBacktesting Finished")
+print(f"\nBacktesting Finished\n")
 
 
 # run method - loops while there is a active method

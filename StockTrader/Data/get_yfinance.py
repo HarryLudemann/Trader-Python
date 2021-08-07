@@ -2,30 +2,8 @@ import yfinance as yf
 import pandas as pd
 import os
 
-def Get_YFinance_Stock(ticker, start_date, end_date, interval):  
-    """passed ticker, interval and adjusted calls appropraite api, returns df"""
-    if interval == '1m':
-        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
-    elif interval == '5m':
-        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
-    elif interval == '15m':
-        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
-    elif start_date == None or end_date == None:
-        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
-    elif interval== '30m':
-        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
-    elif interval == '60m':
-        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
-    elif interval == '1d':
-        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
-    elif interval == '1w':
-        stock_df = Get_Yfinance_Date('1wk', [ticker], start_date, end_date)
-    elif interval == '1M':
-        stock_df = Get_Yfinance_Date('1mo', [ticker], start_date, end_date)
 
-    # rename column names
-    stock_df.columns = ['open', 'high', 'low', 'close', 'volume']
-    return stock_df
+
 
 def Get_Yfinance_Date(interval, tickers, start_date, end_date):
     """
@@ -173,3 +151,59 @@ def Update_Yfinance_Daily(tickers):         # only possible for one day to be mi
     daily_data = pd.concat([daily_data, new_data], ignore_index=True)     # add new data to bottom of minute data
     daily_data = daily_data.drop_duplicates(keep=False)                   # remove duplicate rows
     daily_data.to_csv('Live-Data/Stock/daily_yfinance_data.csv', index=False)   # save to new csv
+
+
+    
+def Get_YFinance_Stock(ticker, start_date, end_date, interval):  
+    """passed ticker, interval and adjusted calls appropraite api, returns df"""
+    if interval == '1m':
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif interval == '5m':
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif interval == '15m':
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif start_date == None or end_date == None:
+        stock_df = Get_Yfinance_Period(interval, [ticker], '7d')
+    elif interval== '30m':
+        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
+    elif interval == '60m':
+        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
+    elif interval == '1d':
+        stock_df = Get_Yfinance_Date(interval, [ticker], start_date, end_date)
+    elif interval == '1w':
+        stock_df = Get_Yfinance_Date('1wk', [ticker], start_date, end_date)
+    elif interval == '1m':
+        stock_df = Get_Yfinance_Date('1mo', [ticker], start_date, end_date)
+
+    # rename column names
+    stock_df.columns = ['open', 'high', 'low', 'close', 'volume']
+    return stock_df
+
+
+
+def Get_YFinance_Forex(to_currency, from_currency, interval, start_date, end_date):  
+    """passed ticker, interval and adjusted calls appropraite api, returns df"""
+    ticker = f"{from_currency}{to_currency}=X"
+    forex_df = pd.DataFrame()
+    if interval == '1m':
+        forex_df = Get_Yfinance_Period(interval, ticker, '7d')
+    elif interval == '5m':
+        forex_df = Get_Yfinance_Period(interval, ticker, '7d')
+    elif interval == '15m':
+        forex_df = Get_Yfinance_Period(interval, ticker, '7d')
+    elif start_date == None or end_date == None:
+        forex_df = Get_Yfinance_Period(interval, ticker, '7d')
+    elif interval== '30m':
+        forex_df = Get_Yfinance_Date(interval, ticker, start_date, end_date)
+    elif interval == '60m':
+        forex_df = Get_Yfinance_Date(interval, ticker, start_date, end_date)
+    elif interval == '1d':
+        forex_df = Get_Yfinance_Date(interval,ticker, start_date, end_date)
+    elif interval == '1w':
+        forex_df = Get_Yfinance_Date('1wk', ticker, start_date, end_date)
+    elif interval == '1m':
+        forex_df = Get_Yfinance_Date('1mo',ticker, start_date, end_date)
+
+    # rename column names
+    forex_df.columns = ['open', 'high', 'low', 'close', 'volume']
+    return forex_df

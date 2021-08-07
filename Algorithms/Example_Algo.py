@@ -12,10 +12,11 @@ sys.path.insert(0, parentdir)
 # custom modules
 from StockTrader import Trader
 
-class StockAlgorithm(Trader.StockAlgorithm):
+class Algorithm(Trader.StockAlgorithm):
     """ Example Algorithm to Run """
 
     def Init(self):
+        self.Active =False
         self.Name = "Example Stock Strategy"
         self.Symbol = "TSLA"
         self.StartDate = datetime.datetime.now().strftime("%Y-%m-%d") # current time
