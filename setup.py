@@ -20,7 +20,7 @@ setup(
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['python-decouple', 'pandas', 'yfinance', 'requests'],
+    install_requires=['pandas', 'yfinance', 'requests'],
     keywords=['python', 'Hazzahx', 'trader', 'backtest', 'Hazzahx-Trader'],
     classifiers=[
         "Development Status :: 1 - Planning",

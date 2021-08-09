@@ -22,6 +22,7 @@ class StockAlgorithm(ABC):
     Symbol = ""                 # Stock Ticker
     StartDate = None            # Start Date for algorithm (Some Datasources don't use)
     EndDate = None              # End Date for algorithm (Some Datasources don't use)
+    AlphaV_API = None           # Alpha Vantage API key
     Cash = 0                    # Cash allowed for algorithm to use
     Data_Source = ""            # Data Source for stock infomation (Check Data sources)
     Adjusted = False            # Wether to use Adjusted data (Some Datasources don't use)  - Default False
@@ -72,6 +73,7 @@ class ForexAlgorithm(ABC):
     To_Currency = ""          # To Currency Ticker
     StartDate = None            # Start Date for algorithm (Some Datasources don't use)
     EndDate = None              # End Date for algorithm (Some Datasources don't use)
+    AlphaV_API = None           # Alpha Vantage API key
     Cash = 0                    # Cash allowed for algorithm to use
     Data_Source = ""            # Data Source for stock infomation (Check Data sources)
     Interval = ""               # Interval for data eg 1m, 5m, 1d, 1m
@@ -114,13 +116,13 @@ class ForexAlgorithm(ABC):
 def back_test(algorithm):
     """ Method to backtest given algorithm object, gets data and passes each row to on_data method """
     if hasattr(algorithm, 'Symbol'):                # if algorithm is stock algo
-        df = getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm.Symbol, algorithm.StartDate, algorithm.EndDate, algorithm.Interval, algorithm.Adjusted)
+        df = getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm)
         if algorithm.Save_Data:                     # if saving data
             df.to_csv(f'{path}/Live-Data/Algorithms/' + algorithm.Name + '.csv')
             df.to_csv(f'{path}/Live-Data/Stock/' + algorithm.Symbol + '_'+ algorithm.Interval + '.csv')
 
     elif hasattr(algorithm, 'From_Currency'):       # if algorithm is forex method
-        df = getattr(data, f'get_{algorithm.Data_Source}_forex')(algorithm.To_Currency, algorithm.From_Currency, algorithm.Interval, algorithm.StartDate, algorithm.EndDate)
+        df = getattr(data, f'get_{algorithm.Data_Source}_forex')(algorithm)
         if algorithm.Save_Data:                     # if saving data
             df.to_csv(f'{path}/Live-Data/Algorithms/' + algorithm.Name + '.csv')
             df.to_csv(f'{path}/Live-Data/Forex/' + algorithm.From_Currency + '_' + algorithm.To_Currency + '_'+ algorithm.Interval + '.csv')
@@ -168,22 +170,17 @@ def get_active_algorithms(Algorithms):
     return active_algorithms
 
 
-def run():
-    """ Main method to run functions """
-    # load tickers
-    with open('tickers.txt', 'r') as tickers:
-        tickers = tickers.read()
-        tickers = tickers.split('\n')   
-
-    Algorithms = get_algorithms()  # list of all Algorithm Objects
+def run(Algorithms):
+    """ Main method to run functions, passed list of algorithm objects """
     Backtest_Algorithms = [x for x in Algorithms if x.Active and x.Back_Test]   # list of Back Test Algorithms
 
-    # Create storage folders to store live data if don't exists
-    if not os.path.exists('Live-Data'):             os.makedirs('Live-Data')                      
-    if not os.path.exists('Live-Data/Stock'):       os.makedirs('Live-Data/Stock')                      
-    if not os.path.exists('Live-Data/Forex'):       os.makedirs('Live-Data/Forex')                      
-    if not os.path.exists('Live-Data/Crypto'):      os.makedirs('Live-Data')                      
-    if not os.path.exists('Live-Data/Algorithms'):  os.makedirs('Live-Data')  
+    if (len([x for x in Algorithms if x.Save_Data == True and x.Active]) > 0):   # if a method contains a save method
+        # Create storage folders to store live data if don't exists
+        if not os.path.exists('Live-Data'):             os.makedirs('Live-Data')                      
+        if not os.path.exists('Live-Data/Stock'):       os.makedirs('Live-Data/Stock')                      
+        if not os.path.exists('Live-Data/Forex'):       os.makedirs('Live-Data/Forex')                      
+        if not os.path.exists('Live-Data/Crypto'):      os.makedirs('Live-Data')                      
+        if not os.path.exists('Live-Data/Algorithms'):  os.makedirs('Live-Data')  
 
     print("\nStarting Backtesting\n")
     for algorithm in Backtest_Algorithms:
