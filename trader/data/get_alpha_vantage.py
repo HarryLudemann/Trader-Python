@@ -165,7 +165,7 @@ def get_alpha_stock_monthly_adj(ticker):
 
 
 
-def get_alphav_forex(from_currency, to_currency, interval):  
+def get_alphav_forex(from_currency, to_currency, interval, start_date, end_date):  
     """passed ticker, interval and adjusted calls appropraite api, returns df"""
     forex_df = pd.DataFrame()
     if interval == '1m':
@@ -202,8 +202,7 @@ def get_alphav_forex(from_currency, to_currency, interval):
 
 # stock get methods
 
-
-def get_alphav_stock(ticker, interval=None, Adjusted=False):  
+def get_alphav_stock(ticker, StartDate, EndDate, interval=None, Adjusted=False):
     """passed ticker, interval and adjusted calls appropraite api, returns df"""
     if interval == '1m':
         stock_df = get_alpha_stock_intraday(ticker, '1min')

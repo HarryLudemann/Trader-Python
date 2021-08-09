@@ -123,7 +123,7 @@ def clean_yfinance_df(tickers, dataframe):
     return dataframe_list
 
     
-def get_yfinance_stock(ticker, start_date, end_date, interval):  
+def get_yfinance_stock(ticker, StartDate, EndDate, interval=None, Adjusted=False):  
     """passed ticker, interval and adjusted calls appropraite api, returns df"""
     if interval == '1m':
         stock_df = get_yfinance_period(interval, [ticker], '7d')
@@ -131,18 +131,18 @@ def get_yfinance_stock(ticker, start_date, end_date, interval):
         stock_df = get_yfinance_period(interval, [ticker], '7d')
     elif interval == '15m':
         stock_df = get_yfinance_period(interval, [ticker], '7d')
-    elif start_date == None or end_date == None:
+    elif StartDate == None or EndDate == None:
         stock_df = get_yfinance_period(interval, [ticker], '7d')
     elif interval== '30m':
-        stock_df = get_yfinance_date(interval, [ticker], start_date, end_date)
+        stock_df = get_yfinance_date(interval, [ticker], StartDate, EndDate)
     elif interval == '60m':
-        stock_df = get_yfinance_date(interval, [ticker], start_date, end_date)
+        stock_df = get_yfinance_date(interval, [ticker], StartDate, EndDate)
     elif interval == '1d':
-        stock_df = get_yfinance_date(interval, [ticker], start_date, end_date)
+        stock_df = get_yfinance_date(interval, [ticker], StartDate, EndDate)
     elif interval == '1w':
-        stock_df = get_yfinance_date('1wk', [ticker], start_date, end_date)
+        stock_df = get_yfinance_date('1wk', [ticker], StartDate, EndDate)
     elif interval == '1m':
-        stock_df = get_yfinance_date('1mo', [ticker], start_date, end_date)
+        stock_df = get_yfinance_date('1mo', [ticker], StartDate, EndDate)
 
     # rename column names
     stock_df.columns = ['open', 'high', 'low', 'close', 'volume']

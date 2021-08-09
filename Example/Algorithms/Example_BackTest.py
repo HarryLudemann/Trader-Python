@@ -2,21 +2,18 @@
 import os
 import sys
 import inspect
-
+import datetime
 
 # move directory to parent 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
 
-
-# custom modules
-from trader import trade
+from trader import StockAlgorithm
 
 
 open_data = []
-
-class Algorithm(trade.StockAlgorithm):
+class Algorithm(StockAlgorithm):
     """ Example Algorithm Backtesting """
 
     def Init(self):
@@ -27,7 +24,7 @@ class Algorithm(trade.StockAlgorithm):
         self.StartDate = '2020-06-01' # current time
         self.EndDate = '2021-06-01' # current time
         self.Cash = 100000
-        self.Data_Source = 'YFinance'
+        self.Data_Source = 'yfinance'
         self.Adjusted = False
         self.Interval = "1m"
         self.Save_Data = True

@@ -2,21 +2,17 @@
 import os
 import sys
 import inspect
-
+import datetime
 
 # move directory to parent 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
 
-
-# custom modules
-from trader import trade
-
+from trader import ForexAlgorithm
 
 open_data = []
-
-class Algorithm(trade.ForexAlgorithm):
+class Algorithm(ForexAlgorithm):
     """ Example Algorithm Backtesting """
 
     def Init(self):
@@ -25,7 +21,7 @@ class Algorithm(trade.ForexAlgorithm):
         self.From_Currency = "USD"          # From Currency Ticker
         self.To_Currency = "NZD"            # To Current Ticker
         self.Cash = 100000                    # Cash allowed for algorithm to use
-        self.Data_Source = "YFinance"            # Data Source for stock infomation (Check Data sources)
+        self.Data_Source = "yfinance"            # Data Source for stock infomation (Check Data sources)
         self.Interval = "1d"               # Interval for data eg 1m, 5m, 1d, 1m
         self.StartDate = '2020-06-01'
         self.EndDate = '2021-06-01'

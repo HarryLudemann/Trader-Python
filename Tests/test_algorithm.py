@@ -9,14 +9,14 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
 
 
-# Custom Modules
-from trader import trade
+# abstract class
+from start import StockAlgorithm
 
 
 def test_algorithm():
     """Checks the algorthm abstract class initializes properly returning value"""
 
-    class TestAlgo(trade.StockAlgorithm):
+    class TestAlgo(StockAlgorithm):
         """ Test Algorithm that returns test symbol in on data"""
         def Init(self):
             self.Symbol = "AAPL"

@@ -9,10 +9,8 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
 
-# custom modules
-from trader import trade
-
-class Algorithm(trade.StockAlgorithm):
+from trader import StockAlgorithm
+class Algorithm(StockAlgorithm):
     """ Example Algorithm to Run """
 
     def Init(self):
@@ -21,7 +19,7 @@ class Algorithm(trade.StockAlgorithm):
         self.Symbol = "TSLA"
         self.StartDate = datetime.datetime.now().strftime("%Y-%m-%d") # current time
         self.Cash = 100000
-        self.Data_Source = 'AlphaV'
+        self.Data_Source = 'alphav'
         self.Adjusted = False
         self.Interval = "1m"
         self.Save_Data = True
