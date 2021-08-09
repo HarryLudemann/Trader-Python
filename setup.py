@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.1'
+VERSION = '0.0.3'
 DESCRIPTION = 'Run/Backtest/Create Easy Python Trading Algorithms'
 LONG_DESCRIPTION = 'A package package that allows creating trading algorithms easy to write, backtest and run.'
 

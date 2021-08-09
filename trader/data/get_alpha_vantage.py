@@ -152,28 +152,28 @@ def get_alpha_stock_monthly_adj(ALPHA_VANTAGE_KEY, ticker):
 def get_alphav_forex(algorithm):  
     """passed algorithm calls appropraite api, returns df"""
     forex_df = pd.DataFrame()
-    if algorithm.interval == '1m':
+    if algorithm.Interval == '1m':
         forex_df = get_alpha_forex_fx_intraday(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency, '1min')
 
-    elif algorithm.interval == '5m':
+    elif algorithm.Interval == '5m':
         forex_df = get_alpha_forex_fx_intraday(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency, '5min')
 
-    elif algorithm.interval == '15m':
+    elif algorithm.Interval == '15m':
         forex_df = get_alpha_forex_fx_intraday(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency, '15min')
 
-    elif algorithm.interval== '30m':
+    elif algorithm.Interval== '30m':
         forex_df = get_alpha_forex_fx_intraday(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency, '30min')
 
-    elif algorithm.interval== '60m':
+    elif algorithm.Interval== '60m':
         forex_df = get_alpha_forex_fx_intraday(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency, '60min')
 
-    elif algorithm.interval == '1d':
+    elif algorithm.Interval == '1d':
         forex_df = get_alpha_forex_fx_daily(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency)
 
-    elif algorithm.interval == '1w':
+    elif algorithm.Interval == '1w':
         forex_df = get_alpha_forex_fx_weekly(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency)
 
-    elif algorithm.interval == '1M':
+    elif algorithm.Interval == '1M':
         forex_df = get_alpha_forex_fx_monthly(algorithm.AlphaV_API, algorithm.from_currency, algorithm.to_currency)
 
     # rename timestamp column to Datetime
@@ -188,30 +188,30 @@ def get_alphav_forex(algorithm):
 
 def get_alphav_stock(algorithm):
     """passed algorithm calls appropraite api, returns df"""
-    if algorithm.interval == '1m':
+    if algorithm.Interval == '1m':
         stock_df = get_alpha_stock_intraday(algorithm.AlphaV_API, algorithm.ticker, '1min')
-    elif algorithm.interval == '5m':
+    elif algorithm.Interval == '5m':
         stock_df = get_alpha_stock_intraday(algorithm.AlphaV_API, algorithm.ticker, '5min')
-    elif algorithm.interval == '15m':
+    elif algorithm.Interval == '15m':
         stock_df = get_alpha_stock_intraday(algorithm.AlphaV_API, algorithm.ticker, '15min')
-    elif algorithm.interval== '30m':
+    elif algorithm.Interval== '30m':
         stock_df = get_alpha_stock_intraday(algorithm.AlphaV_API, algorithm.ticker, '30min')
-    elif algorithm.interval == '60m':
+    elif algorithm.Interval == '60m':
         stock_df = get_alpha_stock_intraday(algorithm.AlphaV_API, algorithm.ticker, '60min')
     # check if adjusted
     if algorithm.Adjusted:
-        if algorithm.interval == '1d':
+        if algorithm.Interval == '1d':
             stock_df = get_alpha_stock_daily_adj(algorithm.AlphaV_API, algorithm.ticker)
-        elif algorithm.interval == '1w':
+        elif algorithm.Interval == '1w':
             stock_df = get_alpha_stock_weekly_adj(algorithm.AlphaV_API, algorithm.ticker)
-        elif algorithm.interval == '1m':
+        elif algorithm.Interval == '1m':
             stock_df = get_alpha_stock_monthly_adj(algorithm.AlphaV_API, '1M')
     else:
-        if algorithm.interval == '1d':
+        if algorithm.Interval == '1d':
             stock_df = get_alpha_stock_daily(algorithm.AlphaV_API, algorithm.ticker)
-        elif algorithm.interval == '1w':
+        elif algorithm.Interval == '1w':
             stock_df = get_alpha_stock_weekly(algorithm.AlphaV_API, algorithm.ticker)
-        elif algorithm.interval == '1m':
+        elif algorithm.Interval == '1m':
             stock_df = get_alpha_stock_monthly(algorithm.AlphaV_API, '1M')
             
     # rename timestamp column to Datetime
