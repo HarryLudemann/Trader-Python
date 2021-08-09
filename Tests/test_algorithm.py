@@ -10,13 +10,13 @@ sys.path.insert(0, parentdir)
 
 
 # abstract class
-from start import StockAlgorithm
+import trader
 
 
 def test_algorithm():
     """Checks the algorthm abstract class initializes properly returning value"""
 
-    class TestAlgo(StockAlgorithm):
+    class TestAlgo(trader.StockAlgorithm):
         """ Test Algorithm that returns test symbol in on data"""
         def Init(self):
             self.Symbol = "AAPL"
