@@ -19,7 +19,7 @@ def Get_Alpha_Forex_Exchange_Rate(from_currency, to_currency):
     return pd.read_csv(CSV_URL)   
 
 
-def Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, interval):
+def get_alpha_forex_fx_intraday(from_currency, to_currency, interval):
     """
     Given from, to currency and interval(1min, 5min, 15min, 30min, 60min) saves data to Live_data using alpha vantages FX_INTRADAY api
     """
@@ -28,7 +28,7 @@ def Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, interval):
     return pd.read_csv(CSV_URL)
 
 
-def Get_Alpha_Forex_FX_Daily(from_symbol, to_symbol):
+def get_alpha_forex_fx_daily(from_symbol, to_symbol):
     """
     Given from and to symbol saves data to Live_data using alpha vantages FX_DAILY api
     """
@@ -38,7 +38,7 @@ def Get_Alpha_Forex_FX_Daily(from_symbol, to_symbol):
     return pd.read_csv(CSV_URL)   
 
 
-def Get_Alpha_Forex_FX_Weekly(from_symbol, to_symbol):
+def get_alpha_forex_fx_weekly(from_symbol, to_symbol):
     """
     Given from and to symbol saves data to Live_data using alpha vantages FX_WEEKLY api
     """
@@ -48,7 +48,7 @@ def Get_Alpha_Forex_FX_Weekly(from_symbol, to_symbol):
     return pd.read_csv(CSV_URL)   
 
 
-def Get_Alpha_Forex_FX_Monthly(from_symbol, to_symbol):
+def get_alpha_forex_fx_monthly(from_symbol, to_symbol):
     """
     Given from and to symbol saves data to Live_data using alpha vantages FX_MONTHLY api
     """
@@ -64,7 +64,7 @@ def Get_Alpha_Forex_FX_Monthly(from_symbol, to_symbol):
 
 
 
-def Get_Alpha_Crypto_Exchange_Rate(from_currency, to_currency):
+def fet_alpha_crypto_exchange_rate(from_currency, to_currency):
     """
     Given given from and to currency returns current exchange rate using alpha vantages CURRENCY_EXCHANGE_RATE api
     returns 3 strings of Current Exchange Rate, bid price and ask price
@@ -78,7 +78,7 @@ def Get_Alpha_Crypto_Exchange_Rate(from_currency, to_currency):
 
 
 
-def Get_Alpha_Stock_Intraday(ticker, interval):
+def get_alpha_stock_intraday(ticker, interval):
     """
     Given Ticker and interval saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY api
     returns infomation from 1-2 months from 4:00am to 8:00pm Eastern Time for the US market
@@ -90,7 +90,7 @@ def Get_Alpha_Stock_Intraday(ticker, interval):
 
 
 
-def Get_Alpha_Stock_Intraday_Ext(ticker, interval):
+def get_alpha_stock_intraday_ext(ticker, interval):
     """
     Given Ticker and interval saves data to Live_data using alpha vantages TIME_SERIES_INTRADAY_EXTENDED api
     trrailing 2 years
@@ -101,7 +101,7 @@ def Get_Alpha_Stock_Intraday_Ext(ticker, interval):
 
 
 
-def Get_Alpha_Stock_Daily(ticker):
+def get_alpha_stock_daily(ticker):
     """
     Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_DAILY api
     covering 20+ years
@@ -112,7 +112,7 @@ def Get_Alpha_Stock_Daily(ticker):
 
 
 
-def Get_Alpha_Stock_Daily_Adj(ticker):
+def get_alpha_stock_daily_adj(ticker):
     """
     Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_DAILY_ADJUSTED api
     covering 20+ years
@@ -123,7 +123,7 @@ def Get_Alpha_Stock_Daily_Adj(ticker):
 
 
 
-def Get_Alpha_Stock_Weekly(ticker):
+def get_alpha_stock_weekly(ticker):
     """
     Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_WEEKLY api
     covering 20+ years
@@ -134,7 +134,7 @@ def Get_Alpha_Stock_Weekly(ticker):
 
 
 
-def Get_Alpha_Stock_Weekly_Adj(ticker):
+def get_alpha_stock_weekly_adj(ticker):
     """
     Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_WEEKLY_ADJUSTED api
     covering 20+ years
@@ -144,7 +144,7 @@ def Get_Alpha_Stock_Weekly_Adj(ticker):
     return pd.read_csv(CSV_URL)   
 
 
-def Get_Alpha_Stock_Monthly(ticker):
+def get_alpha_stock_monthly(ticker):
     """
     Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_MONTHLY api
     covering 20+ years
@@ -154,7 +154,7 @@ def Get_Alpha_Stock_Monthly(ticker):
     return pd.read_csv(CSV_URL)   
 
 
-def Get_Alpha_Stock_Monthly_Adj(ticker):
+def get_alpha_stock_monthly_adj(ticker):
     """
     Given Ticker saves data to Live_data using alpha vantages TIME_SERIES_MONTHLY_ADJUSTED api
     covering 20+ years
@@ -165,32 +165,32 @@ def Get_Alpha_Stock_Monthly_Adj(ticker):
 
 
 
-def Get_AlphaV_Forex(from_currency, to_currency, interval):  
+def get_alphav_forex(from_currency, to_currency, interval):  
     """passed ticker, interval and adjusted calls appropraite api, returns df"""
     forex_df = pd.DataFrame()
     if interval == '1m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '1min')
+        forex_df = get_alpha_forex_fx_intraday(from_currency, to_currency, '1min')
 
     elif interval == '5m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '5min')
+        forex_df = get_alpha_forex_fx_intraday(from_currency, to_currency, '5min')
 
     elif interval == '15m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '15min')
+        forex_df = get_alpha_forex_fx_intraday(from_currency, to_currency, '15min')
 
     elif interval== '30m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '30min')
+        forex_df = get_alpha_forex_fx_intraday(from_currency, to_currency, '30min')
 
     elif interval== '60m':
-        forex_df = Get_Alpha_Forex_FX_Intraday(from_currency, to_currency, '60min')
+        forex_df = get_alpha_forex_fx_intraday(from_currency, to_currency, '60min')
 
     elif interval == '1d':
-        forex_df = Get_Alpha_Forex_FX_Daily(from_currency, to_currency)
+        forex_df = get_alpha_forex_fx_daily(from_currency, to_currency)
 
     elif interval == '1w':
-        forex_df = Get_Alpha_Forex_FX_Weekly(from_currency, to_currency)
+        forex_df = get_alpha_forex_fx_weekly(from_currency, to_currency)
 
     elif interval == '1M':
-        forex_df = Get_Alpha_Forex_FX_Monthly(from_currency, to_currency)
+        forex_df = get_alpha_forex_fx_monthly(from_currency, to_currency)
 
     # rename timestamp column to Datetime
     forex_df.rename(columns={'timestamp':'Datetime'}, inplace=True)
@@ -203,33 +203,33 @@ def Get_AlphaV_Forex(from_currency, to_currency, interval):
 # stock get methods
 
 
-def Get_AlphaV_Stock(ticker, interval=None, Adjusted=False):  
+def get_alphav_stock(ticker, interval=None, Adjusted=False):  
     """passed ticker, interval and adjusted calls appropraite api, returns df"""
     if interval == '1m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '1min')
+        stock_df = get_alpha_stock_intraday(ticker, '1min')
     elif interval == '5m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '5min')
+        stock_df = get_alpha_stock_intraday(ticker, '5min')
     elif interval == '15m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '15min')
+        stock_df = get_alpha_stock_intraday(ticker, '15min')
     elif interval== '30m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '30min')
+        stock_df = get_alpha_stock_intraday(ticker, '30min')
     elif interval == '60m':
-        stock_df = Get_Alpha_Stock_Intraday(ticker, '60min')
+        stock_df = get_alpha_stock_intraday(ticker, '60min')
     # check if adjusted
     if Adjusted:
         if interval == '1d':
-            stock_df = Get_Alpha_Stock_Daily_Adj(ticker)
+            stock_df = get_alpha_stock_daily_adj(ticker)
         elif interval == '1w':
-            stock_df = Get_Alpha_Stock_Weekly_Adj(ticker)
+            stock_df = get_alpha_stock_weekly_adj(ticker)
         elif interval == '1m':
-            stock_df = Get_Alpha_Stock_Monthly_Adj('1M')
+            stock_df = get_alpha_stock_monthly_adj('1M')
     else:
         if interval == '1d':
-            stock_df = Get_Alpha_Stock_Daily(ticker)
+            stock_df = get_alpha_stock_daily(ticker)
         elif interval == '1w':
-            stock_df = Get_Alpha_Stock_Weekly(ticker)
+            stock_df = get_alpha_stock_weekly(ticker)
         elif interval == '1m':
-            stock_df = Get_Alpha_Stock_Monthly('1M')
+            stock_df = get_alpha_stock_monthly('1M')
             
     # rename timestamp column to Datetime
     stock_df.rename(columns={'timestamp':'Datetime'}, inplace=True)

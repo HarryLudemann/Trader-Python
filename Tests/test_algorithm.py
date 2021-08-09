@@ -10,13 +10,13 @@ sys.path.insert(0, parentdir)
 
 
 # Custom Modules
-from StockTrader import Trader
+from trader import trade
 
 
 def test_algorithm():
     """Checks the algorthm abstract class initializes properly returning value"""
 
-    class TestAlgo(Trader.StockAlgorithm):
+    class TestAlgo(trade.StockAlgorithm):
         """ Test Algorithm that returns test symbol in on data"""
         def Init(self):
             self.Symbol = "AAPL"

@@ -11,19 +11,19 @@ sys.path.insert(0, parentdir)
 
 
 # custom modules
-from StockTrader import Trader
+from trader import trade
 
 
 open_data = []
 
-class Algorithm(Trader.StockAlgorithm):
+class Algorithm(trade.StockAlgorithm):
     """ Example Algorithm Backtesting """
 
     def Init(self):
-        self.Active = False
+        self.Active = True
         self.Back_Test = True
-        self.Name = "Example Back Test"
-        self.Symbol = "AMZN"
+        self.Name = "Example BackTest"
+        self.Symbol = "GOOG"
         self.StartDate = '2020-06-01' # current time
         self.EndDate = '2021-06-01' # current time
         self.Cash = 100000

@@ -10,14 +10,14 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
 
 # custom modules
-from StockTrader import Trader
+from trader import trade
 
-class Algorithm(Trader.StockAlgorithm):
+class Algorithm(trade.StockAlgorithm):
     """ Example Algorithm to Run """
 
     def Init(self):
         self.Active =False
-        self.Name = "Example Stock Strategy"
+        self.Name = "Example Algo"
         self.Symbol = "TSLA"
         self.StartDate = datetime.datetime.now().strftime("%Y-%m-%d") # current time
         self.Cash = 100000
