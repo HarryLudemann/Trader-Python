@@ -126,23 +126,23 @@ def clean_yfinance_df(tickers, dataframe):
 def get_yfinance_stock(algorithm):  
     """passed algorithm calls appropraite api, returns df"""
     if algorithm.Interval == '1m':
-        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.ticker], '7d')
+        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.Ticker], '7d')
     elif algorithm.Interval == '5m':
-        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.ticker], '7d')
+        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.Ticker], '7d')
     elif algorithm.Interval == '15m':
-        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.ticker], '7d')
+        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.Ticker], '7d')
     elif algorithm.StartDate == None or algorithm.EndDate == None:
-        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.ticker], '7d')
+        stock_df = get_yfinance_period(algorithm.Interval, [algorithm.Ticker], '7d')
     elif algorithm.Interval== '30m':
-        stock_df = get_yfinance_date(algorithm.Interval, [algorithm.ticker], algorithm.StartDate, algorithm.EndDate)
+        stock_df = get_yfinance_date(algorithm.Interval, [algorithm.Ticker], algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '60m':
-        stock_df = get_yfinance_date(algorithm.Interval, [algorithm.ticker], algorithm.StartDate, algorithm.EndDate)
+        stock_df = get_yfinance_date(algorithm.Interval, [algorithm.Ticker], algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '1d':
-        stock_df = get_yfinance_date(algorithm.Interval, [algorithm.ticker], algorithm.StartDate, algorithm.EndDate)
+        stock_df = get_yfinance_date(algorithm.Interval, [algorithm.Ticker], algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '1w':
-        stock_df = get_yfinance_date('1wk', [algorithm.ticker], algorithm.StartDate, algorithm.EndDate)
+        stock_df = get_yfinance_date('1wk', [algorithm.Ticker], algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '1m':
-        stock_df = get_yfinance_date('1mo', [algorithm.ticker], algorithm.StartDate, algorithm.EndDate)
+        stock_df = get_yfinance_date('1mo', [algorithm.Ticker], algorithm.StartDate, algorithm.EndDate)
 
     # rename column names
     stock_df.columns = ['open', 'high', 'low', 'close', 'volume']
@@ -152,7 +152,7 @@ def get_yfinance_stock(algorithm):
 
 def get_yfinance_forex(algorithm):  
     """passed ticker, interval and adjusted calls appropraite api, returns df"""
-    ticker = f"{algorithm.from_currency}{algorithm.to_currency}=X"
+    ticker = f"{algorithm.From_Currency}{algorithm.To_Currency}=X"
     forex_df = pd.DataFrame()
     if algorithm.Interval == '1m':
         forex_df = get_yfinance_period(algorithm.Interval, ticker, '7d')
@@ -160,18 +160,18 @@ def get_yfinance_forex(algorithm):
         forex_df = get_yfinance_period(algorithm.Interval, ticker, '7d')
     elif algorithm.Interval == '15m':
         forex_df = get_yfinance_period(algorithm.Interval, ticker, '7d')
-    elif algorithm.start_date == None or algorithm.end_date == None:
+    elif algorithm.StartDate == None or algorithm.EndDate == None:
         forex_df = get_yfinance_period(algorithm.Interval, ticker, '7d')
     elif algorithm.Interval== '30m':
-        forex_df = get_yfinance_date(algorithm.Interval, ticker, algorithm.start_date, algorithm.end_date)
+        forex_df = get_yfinance_date(algorithm.Interval, ticker, algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '60m':
-        forex_df = get_yfinance_date(algorithm.Interval, ticker, algorithm.start_date, algorithm.end_date)
+        forex_df = get_yfinance_date(algorithm.Interval, ticker, algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '1d':
-        forex_df = get_yfinance_date(algorithm.Interval,ticker, algorithm.start_date, algorithm.end_date)
+        forex_df = get_yfinance_date(algorithm.Interval,ticker, algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '1w':
-        forex_df = get_yfinance_date('1wk', ticker, algorithm.start_date, algorithm.end_date)
+        forex_df = get_yfinance_date('1wk', ticker, algorithm.StartDate, algorithm.EndDate)
     elif algorithm.Interval == '1m':
-        forex_df = get_yfinance_date('1mo',ticker, algorithm.start_date, algorithm.end_date)
+        forex_df = get_yfinance_date('1mo',ticker, algorithm.StartDate, algorithm.EndDate)
 
     # rename column names
     forex_df.columns = ['open', 'high', 'low', 'close', 'volume']
