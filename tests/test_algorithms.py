@@ -54,11 +54,11 @@ def test_forex_algorithm():
             self.interval = "1m"
 
         def on_data(self):
-            return self.Symbol
+            return self.From_Currency
             
         def stats(self):
             print(self.Name, 'Finished with', self.Cash)
 
     algo = TestAlgo2()
     algo.init()
-    assert algo.on_data() == "AAPL"
+    assert algo.on_data() == "NZD"

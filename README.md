@@ -173,9 +173,14 @@ Datetime
     </thead>
     <tbody>
         <tr>
-            <td>test_algorithms</td>
+            <td>test_stock_algorithm</td>
             <td>Test/test_algorithm.py</td>
-            <td>Tests that algorithms abstract class instantiates with appropriate fields</td>
+            <td>Tests stock algorithm class instantiates with appropriate fields</td>
+        </tr>
+        <tr>
+            <td>test_forex_algorithm</td>
+            <td>Test/test_algorithm.py</td>
+            <td>Tests forex algorithm class instantiates with appropriate fields</td>
         </tr>
     </tbody>
 </table>
