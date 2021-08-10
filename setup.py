@@ -13,7 +13,7 @@ LONG_DESCRIPTION = 'A package package that allows creating trading algorithms ea
 
 # Setting up
 setup(
-    name="Hazzahx-Trader",
+    name="trader-python",
     version=VERSION,
     author="Hazzahx (Harry Ludemann)",
     author_email="",
@@ -21,7 +21,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(),
     install_requires=['pandas', 'yfinance', 'requests'],
-    keywords=['python', 'Hazzahx', 'trader', 'backtest', 'Hazzahx-Trader'],
+    keywords=['python', 'harryludemann', 'trader', 'backtest', 'trader-python'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
