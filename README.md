@@ -36,7 +36,7 @@ pip install trader-python
 
 ### Creating Algorithm Classes:
 #### Algorithm(StockAlgorithm):
-##### Init Method:     
+##### Init Variables:     
     Used to set fields
     **Name**  =                     # Name of algorithm     
     **Symbol** =                    # Stock Ticker     
@@ -48,13 +48,6 @@ pip install trader-python
     **Adjusted** =                  # Wether to use Adjusted data (Some data sources don't use)  - Default False     
     **Interval** =                  # Interval for data eg 1m, 5m, 1d, 1m     
     **Back_Test** =                 # Wether to the strategy is to back test or to run  - Default False     
-
-##### on_data Method:  
-    Method passed data tuple, method called on new data
-
-##### stats Method:  
-    Method Called when finished running or back testing, passed nothing
-
 ##### Example:
 ```python
 from trader import StockAlgorithm, run
@@ -64,6 +57,7 @@ class Algorithm(StockAlgorithm):
     """ Example Algorithm to Run """
 
     def init(self):
+        """ method to set variables """
         self.Active =True
         self.Name = "Example Algo"
         self.Symbol = "TSLA"
@@ -74,11 +68,11 @@ class Algorithm(StockAlgorithm):
         self.Interval = "1m"
 
     def on_data(self, data):
-        # print open item in data tuple
-        #print(data[1]['open'])
+        """ Method passed df of single line, method called on new data """
         print(data)
         
     def stats(self):
+        """ Method Called when finished running or back testing, passed nothing """
         print(self.Name, 'Finished with', self.Cash)
 
 
@@ -89,7 +83,7 @@ run([test_algo])
 ```
 
 #### Algorithm(ForexAlgorithm):
-##### Init Method:     
+##### Init Variables:     
     Used to set fields
     Active =                        # Signal wether to run/backtest
     Name =                          # Name of algorithm
@@ -102,12 +96,6 @@ run([test_algo])
     **API_KEY** =                   #if data source requires api key
     Interval =                      # Interval for data eg 1m, 5m, 1d, 1m
 
-##### on_data Method:  
-    Method passed data tuple, method called on new data
-
-##### stats Method:  
-    Method Called when finished running or back testing, passed nothing
-
 ##### Example:
 ```python
 from trader import ForexAlgorithm, backtest
@@ -117,6 +105,7 @@ class Algorithm(ForexAlgorithm):
     """ Example Algorithm to Run """
 
     def init(self):
+        """ method to set variables """
         self.Active =True
         self.Backtest = True
         self.Name = "Example Algo"
@@ -129,11 +118,11 @@ class Algorithm(ForexAlgorithm):
         self.Interval = "1m"
 
     def on_data(self, data):
-        # print open item in data tuple
-        #print(data[1]['open'])
+        """ Method passed df of single line, method called on new data """
         print(data)
         
     def stats(self):
+        """ Method Called when finished running or back testing, passed nothing """
         print(self.Name, 'Finished with', self.Cash)
 
 
