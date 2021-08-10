@@ -1,7 +1,5 @@
 from trader import StockAlgorithm, run
 from datetime import datetime
-
-open_list = []
 class Algorithm(StockAlgorithm):
     """ Example Algorithm to Run """
 
@@ -19,7 +17,7 @@ class Algorithm(StockAlgorithm):
     def on_data(self, data):
         # print open item in data tuple
         #print(data[1]['open'])
-        open_list.append(data[1]['open'])
+        print(data)
         
     def stats(self):
         print(self.Name, 'Finished with', self.Cash, 'and', len(open_list), 'items')

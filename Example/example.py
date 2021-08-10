@@ -1,11 +1,12 @@
-import trader
+from trader import StockAlgorithm, run
 from datetime import datetime
 
-class Algorithm(trader.StockAlgorithm):
+class Algorithm(StockAlgorithm):
     """ Example Algorithm to Run """
 
-    def Init(self):
+    def init(self):
         self.Active =True
+        self.Backtest = False
         self.Name = "Example Algo"
         self.Symbol = "TSLA"
         self.StartDate = datetime.now().strftime("%Y-%m-%d") # current time
@@ -13,22 +14,17 @@ class Algorithm(trader.StockAlgorithm):
         self.Data_Source = 'yfinance'
         self.Adjusted = False
         self.Interval = "1m"
-        self.Save_Data = True
-        self.Back_Test = True
 
     def on_data(self, data):
         # print open item in data tuple
-        print(data[1]['open'])
-
+        #print(data[1]['open'])
+        print(data)
+        
     def stats(self):
-        print(self.Name, 'Finished with', self.Cash)
-
-
-
+        print(self.Name, 'Finished with', self.Cash, 'and', len(open_list), 'items')
 
 
 test_algo = Algorithm()
-test_algo.Init()
+test_algo.init()
 
-
-trader.run([test_algo])
+run([test_algo])

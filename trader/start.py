@@ -1,6 +1,7 @@
 # Modules
 import os           # for file operations
 from datetime import datetime # get current date
+import time 
 
 # Custom Modules
 from trader import data
@@ -100,7 +101,7 @@ def get_algorithms():
 
 
 def get_active_algorithms(Algorithms):
-    """ returns list of classes to run from given list of  - created for run method"""
+    """ returns list of classes to run from given list of  - created for run method not callable"""
      # get list of stocks where current date is within start and end date (optional)
     active_algorithms = []      
     current_date = datetime.now().strftime("%Y-%m-%d")  # current date
@@ -132,10 +133,9 @@ def backtest(algorithm):
 
     print(f'Back Testing: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
 
-    for stock in df.iterrows(): # for each row in data call on_data method in the algorithm obj
-        algorithm.on_data(stock)
-
-    algorithm.stats()   # print stats
+    # need alternative, somewhat slow
+    for i in range(len(df)):
+        algorithm.on_data(df.iloc[i])
 
     print(f'Finished: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
 
@@ -143,22 +143,44 @@ def backtest(algorithm):
 
 def run(Algorithms):
     # currently not setup to be updatable while running
-    print("Running Active Methods:")
-    START_TIME = datetime.now().strftime("%H:%M:%S")
-    # get active none backtest algorithms
+    start_time = time.time()
     Algorithms = [x for x in Algorithms if x.Active and not x.Backtest] 
-    # set time value to start time
-    for algorithm in Algorithms:
-        algorithm.Time = START_TIME
-
-    while(True):
-        current_time = datetime.now().strftime("%H:%M:%S")
-        current_date = datetime.now().strftime("%Y-%m-%d")  # current date
-        # Ensure list objects are after or = start date and before end date if excists
-        Algorithms = [x for x in Algorithms if x.StartDate <= current_date and x.EndDate >= current_date or x.StartDate <= current_date and x.EndDate == None] 
+    minutes_ran = 0
+    while True:
         for algorithm in Algorithms:
-            print(current_time - algorithm.Time)
+            # get algorithms interval in minutes
+            if algorithm.Interval[-1] == 'm':
+                if algorithm.Interval[0] == '1' and algorithm.Interval[1] == '5':   # 15 minute interval
+                    algo_interval_minutes = 15
+                elif algorithm.Interval[0] == '1':                                  # 1 minute interval
+                    algo_interval_minutes = 1
+                elif algorithm.Interval[0] == '5':                                  # 5 minute interval
+                    algo_interval_minutes = 5
+                elif algorithm.Interval[0] == '3':                                  # 30 minute interval
+                    algo_interval_minutes = 30
+                elif algorithm.Interval[0] == '6':                                  # 60 minute interval
+                    algo_interval_minutes = 60
+            elif algorithm.Interval[-1] == 'd':                                     # 1 day interval
+                algo_interval_minutes = 1440
+            elif algorithm.Interval[-1] == 'w':                                     # 1 week interval
+                algo_interval_minutes = 10080
+            elif algorithm.Interval[-1] == 'm':                                     # 1 month interval
+                algo_interval_minutes = 43200
+            elif algorithm.Interval[-1] == 'y':                                     # 1 year interval
+                algo_interval_minutes = 525600
+            
+            # if time to run algorithm
+            if minutes_ran % algo_interval_minutes == 0:
+                # get appropriate data
+                if hasattr(algorithm, 'Symbol'):                # if algorithm is stock algo
+                    df = getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm)
 
+                elif hasattr(algorithm, 'From_Currency'):       # if algorithm is forex method
+                    df = getattr(data, f'get_{algorithm.Data_Source}_forex')(algorithm)
 
-        break # for testing only run once
-        time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop
+                algorithm.on_data(df.iloc[-1]) # call on data with last row in df
+                    
+
+        # wait for remainder of minute
+        time.sleep(60.0 - ((time.time() - start_time) % 60.0))
+        minutes_ran += 1

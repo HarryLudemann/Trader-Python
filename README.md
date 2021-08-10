@@ -12,7 +12,7 @@ ALPHA_VANTAGE_KEY=eafaapikey
 Create algorithms and store in Algorithm folder, currently contains examples, algorithms file can be named anything.
 
 #### Algorithm(Trader.StockAlgorithm) Class:
-##### Data Sources: 
+##### data Sources: 
     **YFinance** - Python module YFinance retrieving yahoo information (Back testing doesn't use start/end date when using a minute interval (1m, 5m, 15m) auto set to get last 7 days of info)     
     **AlphaV** - Get information from Alpha Vantage API (back testing doesn't use start/end date used against all info retrieved)     
     
@@ -20,13 +20,13 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
     Used to set fields
     **Name**  =                     # Name of algorithm     
     **Symbol** =                    # Stock Ticker     
-    **StartDate** =                 # Start Date for algorithm (Some Data sources don't use)     
-    **EndDate** =                   # End Date for algorithm (Some Data sources don't use)     
+    **StartDate** =                 # Start Date for algorithm (Some data sources don't use)     
+    **EndDate** =                   # End Date for algorithm (Some data sources don't use)     
     **Cash** =                      # Cash allowed for algorithm to use     
-    **Data_Source** =               # Data Source for stock information (Check Data sources)     
-    **Adjusted** =                  # Wether to use Adjusted data (Some Data sources don't use)  - Default False     
+    **data_Source** =               # data Source for stock information (Check data sources)     
+    **Adjusted** =                  # Wether to use Adjusted data (Some data sources don't use)  - Default False     
     **Interval** =                  # Interval for data eg 1m, 5m, 1d, 1m     
-    **Save_Data** =                 # Wether to save the information collected for algorithm  - Default False     
+    **Save_data** =                 # Wether to save the information collected for algorithm  - Default False     
     **Back_Test** =                 # Wether to the strategy is to back test or to run  - Default False     
 
 ##### on_data Method:  
@@ -36,7 +36,7 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
     Method Called when finished running or back testing, passed nothing
 
 #### Algorithm(Trader.ForexAlgorithm) Class:
-##### Data Sources: 
+##### data Sources: 
     **YFinance** - Python module YFinance retrieving yahoo information    
     **AlphaV** - Get information from Alpha Vantage API    
     
@@ -46,12 +46,12 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
     Name =                          # Name of algorithm
     From_Currency =                 # From Currency Ticker
     To_Currency =                   # To Currency Ticker
-    StartDate =                     # Start Date for algorithm (Some Datasources don't use)
-    EndDate =                       # End Date for algorithm (Some Datasources don't use)
+    StartDate =                     # Start Date for algorithm (Some datasources don't use)
+    EndDate =                       # End Date for algorithm (Some datasources don't use)
     Cash =                          # Cash allowed for algorithm to use
-    Data_Source =                   # Data Source for stock infomation (Check Data sources)
+    data_Source =                   # data Source for stock infomation (Check data sources)
     Interval =                      # Interval for data eg 1m, 5m, 1d, 1m
-    Save_Data =                     # Wether to save the infomation collected for algorithm  - Default False
+    Save_data =                     # Wether to save the infomation collected for algorithm  - Default False
     Back_Test =                     # Wether to the strategy is to back test or to run  - Default False
 
 ##### on_data Method:  
@@ -66,20 +66,8 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
 ##### Back Testing
 * Yfinance intervals: 1m, 5m, 15m, 30m, 60m, 1d, 1w, 1m
 * Yfinance Back testing doesn't use start/end date when using a minute interval (1m, 5m, 15m) auto set to get last 7 days of info
-* Alpha Vantage Intervals: 1m, 5m, 15m, 30, 60m, 1d, 1w, 1m
+* Alpha Vantage Intervals: 1m, 5m, 15m, 30m, 60m, 1d, 1w, 1m
 * Alpha Vantage Back testing doesn't use start and end dates
-
-
-### File Structure:
-* **StockTrader** - Contains Main Modules:
-    * **Data** - Module to download data from different sources   
-    * **Trader** - Module containing main Trading features 
-* **Algorithms** - contains user created algorithm classes
-* **Live-Data** - Contains files saved and created in runtime   
-* **Tests** - Contains pytests
-* **start. py** - main script to start Stock Trader   
-* **display. py** - script to display data
-* **tickers.txt** - list of tickers to collect information on     
 
 ### Custom Module Functions:
 ##### Trader Functions
@@ -93,14 +81,24 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
     </thead>
     <tbody>
         <tr>
-            <td>BackTest</td>
-            <td>Trader/backtest</td>
-            <td>Given algorithm object back tests, returns nothing</td>
+            <td>backtest</td>
+            <td>trader</td>
+            <td>Given algorithm object backtest's getting information and passing to objects on_data, returns nothing</td>
+        </tr>
+        <tr>
+            <td>run</td>
+            <td>trader</td>
+            <td>Given algorithm object run's getting information and passing to objects on_data, returns nothing</td>
+        </tr>
+        <tr>
+            <td>get_algorithms</td>
+            <td>trader</td>
+            <td>Given nothing loads all algorithm objects in 'Algorithm' folder in current dir, returns list of initialized (init) objects</td>
         </tr>
     </tbody>
 </table>
 
-##### Data Functions
+##### data Functions
 <table>
     <thead>
         <tr>
@@ -112,22 +110,22 @@ Create algorithms and store in Algorithm folder, currently contains examples, al
     <tbody>
         <tr>
             <td>get_yfinance_stock</td>
-            <td>Data/get_yfinance</td>
+            <td>data/get_yfinance</td>
             <td>Given tickers, start and end date and interval Gets appropriate data and returns df</td>
         </tr>
         <tr>
             <td>get_yfinance_forex</td>
-            <td>Data/get_yfinance</td>
+            <td>data/get_yfinance</td>
             <td>Given to and from data, interval and start and end date Gets appropriate data and returns df</td>
         </tr>
         <tr>
             <td>get_alphav_stock</td>
-            <td>Data/get_alpha_vantage</td>
+            <td>data/get_alpha_vantage</td>
             <td>Given ticker, optionally interval optionally adjusted boolean returns df of stock data</td>
         </tr>
         <tr>
             <td>get_alphav_forex</td>
-            <td>Data/get_alpha_vantage</td>
+            <td>data/get_alpha_vantage</td>
             <td>Given from and to currency and interval returns df of stock data</td>
         </tr>
     </tbody>
