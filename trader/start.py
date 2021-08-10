@@ -1,7 +1,6 @@
 # Modules
 import os           # for file operations
 from datetime import datetime # get current date
-#import time         # for sleep - scheduler
 
 # Custom Modules
 from trader import data
@@ -16,39 +15,41 @@ from abc import ABC, abstractmethod
 
 path = os.getcwd().replace('\\','/')     # path script is running from
 
-class StockAlgorithm(ABC):
-    """ Abstract class to store algorithm infomation and functions for stock algorithms """
+
+class Algorithm(ABC):
+    """ Class with variables that all algorithms have"""
     Name = ""                   # Name of algorithm
-    Symbol = ""                 # Stock Ticker
-    StartDate = None            # Start Date for algorithm (Some Datasources don't use)
-    EndDate = None              # End Date for algorithm (Some Datasources don't use)
+    Interval = ""               # Interval for data eg 1m, 5m, 1d, 1m
+    Backtest = False           # Wether to the strategy is to back test or to run  - Default False
     AlphaV_API = None           # Alpha Vantage API key
     Cash = 0                    # Cash allowed for algorithm to use
+    StartDate = None            # Start Date for algorithm (Some Datasources don't use)
+    EndDate = None              # End Date for algorithm (Some Datasources don't use)
     Data_Source = ""            # Data Source for stock infomation (Check Data sources)
     Adjusted = False            # Wether to use Adjusted data (Some Datasources don't use)  - Default False
-    Interval = ""               # Interval for data eg 1m, 5m, 1d, 1m
-    Save_Data = False           # Wether to save the infomation collected for algorithm  - Default False
-    Back_Test = False           # Wether to the strategy is to back test or to run  - Default False
+    Active = True               # Signal wether to run/backtest
+    Time = ""                   # not set by user - used for scheduling in run method
 
-    # Setter
-    def setName(self, name):
-        self.Name = name
-    def setSymbol(self, symbol):
-        self.Symbol = symbol
-    def setStartDate(self, startDate):
+    def set_start_date(self, startDate):
         self.StartDate = startDate
-    def setEndDate(self, endDate):
+    def set_end_date(self, endDate):
         self.EndDate = endDate
-    def setCash(self, cash):
+    def set_cash(self, cash):
         self.Cash = cash
-    def setData_Source(self, data_source):
+    def set_data_source(self, data_source):
         self.Data_Source = data_source
-    def setInterval(self, interval):
+    def set_interval(self, interval):
         self.Interval = interval
+    def set_name(self, name):
+        self.Name = name
+    def set_active(self, active):
+        self.Active = active
+    def set_adjusted(self, adjusted):
+        self.Adjusted = adjusted
 
-    # Methods
+    # Abstract Methods
     @abstractmethod
-    def Init(self):
+    def init(self):
         """ Abstract method to define fields at creation """
         pass
 
@@ -63,83 +64,29 @@ class StockAlgorithm(ABC):
         pass
 
 
+class StockAlgorithm(Algorithm):
+    """ Abstract class to store algorithm infomation and functions for stock algorithms """
+    Symbol = ""                 # Stock Ticker
+
+    # Setter
+    def set_symbol(self, symbol):
+        self.Symbol = symbol
 
 
-class ForexAlgorithm(ABC):
+class ForexAlgorithm(Algorithm):
     """ Abstract class to store algorithm infomation and functions for forex algorithms"""
-    Active = True               # Signal wether to run/backtest
-    Name = ""                   # Name of algorithm
     From_Currency = ""          # From Currency Ticker
     To_Currency = ""          # To Currency Ticker
-    StartDate = None            # Start Date for algorithm (Some Datasources don't use)
-    EndDate = None              # End Date for algorithm (Some Datasources don't use)
-    AlphaV_API = None           # Alpha Vantage API key
-    Cash = 0                    # Cash allowed for algorithm to use
-    Data_Source = ""            # Data Source for stock infomation (Check Data sources)
-    Interval = ""               # Interval for data eg 1m, 5m, 1d, 1m
-    Save_Data = False           # Wether to save the infomation collected for algorithm  - Default False
-    Back_Test = False           # Wether to the strategy is to back test or to run  - Default False
 
     # Setter
-    def setName(self, name):
-        self.Name = name
-    def setSymbol(self, symbol):
-        self.Symbol = symbol
-    def setStartDate(self, startDate):
-        self.StartDate = startDate
-    def setEndDate(self, endDate):
-        self.EndDate = endDate
-    def setCash(self, cash):
-        self.Cash = cash
-    def setData_Source(self, data_source):
-        self.Data_Source = data_source
-    def setInterval(self, interval):
-        self.Interval = interval
-
-    # Methods
-    @abstractmethod
-    def Init(self):
-        """ Abstract method to define fields at creation """
-        pass
-
-    @abstractmethod
-    def on_data(self, data):
-        """ Abstract method to define what happens on new data, given tuple of data (timestrap, ohlc and volume) """
-        pass
-
-    @abstractmethod
-    def stats(self):
-        """ Abstract method to define what stats to return """
-        pass
-
-
-def back_test(algorithm):
-    """ Method to backtest given algorithm object, gets data and passes each row to on_data method """
-    if hasattr(algorithm, 'Symbol'):                # if algorithm is stock algo
-        df = getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm)
-        if algorithm.Save_Data:                     # if saving data
-            df.to_csv(f'{path}/Live-Data/Algorithms/' + algorithm.Name + '.csv')
-            df.to_csv(f'{path}/Live-Data/Stock/' + algorithm.Symbol + '_'+ algorithm.Interval + '.csv')
-
-    elif hasattr(algorithm, 'From_Currency'):       # if algorithm is forex method
-        df = getattr(data, f'get_{algorithm.Data_Source}_forex')(algorithm)
-        if algorithm.Save_Data:                     # if saving data
-            df.to_csv(f'{path}/Live-Data/Algorithms/' + algorithm.Name + '.csv')
-            df.to_csv(f'{path}/Live-Data/Forex/' + algorithm.From_Currency + '_' + algorithm.To_Currency + '_'+ algorithm.Interval + '.csv')
-        
-    start_date = df.index[0]    # start date of data   
-    end_date = df.index[-1]     # end date of data
-
-    print(f'Back Testing: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
-
-    for stock in df.iterrows(): # for each row in data call on_data method in the algorithm obj
-        algorithm.on_data(stock)
-
-    print(f'Finished: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
+    def set_to_currency(self, from_currency):
+        self.From_Currency = from_currency
+    def set_from_currency(self, to_currency):
+        self.To_Currency = to_currency
 
 
 def get_algorithms():
-    """ returns list load of all classes in algorithms folder """
+    """ returns list load of all classes in Algorithms folder """
     algorithms = [] 
     # get list of python files NAMES(without.py) in Algorithms directory
     files = [f[:-3] for f in listdir(f'{path}/Algorithms') if  f.endswith('.py') and isfile(join('Algorithms', f))]
@@ -153,11 +100,12 @@ def get_algorithms():
 
 
 def get_active_algorithms(Algorithms):
-    """ returns list of run classes from given list of active, not back test algorithms  """
+    """ returns list of classes to run from given list of  - created for run method"""
      # get list of stocks where current date is within start and end date (optional)
     active_algorithms = []      
     current_date = datetime.now().strftime("%Y-%m-%d")  # current date
     for algorithm in Algorithms:
+        if algorithm.Active == False or algorithm.Backtest == True: continue
         algo_start = algorithm.StartDate
         algo_end = algorithm.EndDate
         if (algo_end != None):      
@@ -170,32 +118,46 @@ def get_active_algorithms(Algorithms):
     return active_algorithms
 
 
+def backtest(algorithm):
+    """ Method to backtest given algorithm object, gets data and passes each row to on_data method """
+    if algorithm.Active == False or algorithm.Backtest == False: return
+    if hasattr(algorithm, 'Symbol'):                # if algorithm is stock algo
+        df = getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm)
+
+    elif hasattr(algorithm, 'From_Currency'):       # if algorithm is forex method
+        df = getattr(data, f'get_{algorithm.Data_Source}_forex')(algorithm)
+        
+    start_date = df.index[0]    # start date of data   
+    end_date = df.index[-1]     # end date of data
+
+    print(f'Back Testing: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
+
+    for stock in df.iterrows(): # for each row in data call on_data method in the algorithm obj
+        algorithm.on_data(stock)
+
+    algorithm.stats()   # print stats
+    algorithm.test()   # print stats
+
+    print(f'Finished: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
+
+
 def run(Algorithms):
-    """ Main method to run functions, passed list of algorithm objects """
-    Backtest_Algorithms = [x for x in Algorithms if x.Active and x.Back_Test]   # list of Back Test Algorithms
+    # currently not setup to be updatable while running
+    print("Running Active Methods:")
+    START_TIME = datetime.now().strftime("%H:%M:%S")
+    START_DATE = datetime.now().strftime("%Y-%m-%d")  # current date
+    # get active none backtest algorithms
+    Algorithms = [x for x in Algorithms if x.StartDate <= START_DATE and x.EndDate >= START_DATE] 
 
-    if (len([x for x in Algorithms if x.Save_Data == True and x.Active]) > 0):   # if a method contains a save method
-        # Create storage folders to store live data if don't exists
-        if not os.path.exists('Live-Data'):             os.makedirs('Live-Data')                      
-        if not os.path.exists('Live-Data/Stock'):       os.makedirs('Live-Data/Stock')                      
-        if not os.path.exists('Live-Data/Forex'):       os.makedirs('Live-Data/Forex')                      
-        if not os.path.exists('Live-Data/Crypto'):      os.makedirs('Live-Data')                      
-        if not os.path.exists('Live-Data/Algorithms'):  os.makedirs('Live-Data')  
+    # set time value to start time
+    for algorithm in Algorithms:
+        algorithm.Time = START_TIME
 
-    print("\nStarting Backtesting\n")
-    for algorithm in Backtest_Algorithms:
-        back_test(algorithm)
-        algorithm.stats()
-    print("\nBacktesting Finished\n")
 
-    # Run_Algorithms = [x for x in Algorithms if x.Active and x.Back_Test == False] # Run Algorithms  
-    # run method - loops while there is a active method
-    # print("Running Active Methods:")
-    # START_TIME = time.time()    # used for scheduler
-    # while(Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE) != []):
-    #     for algorithm in Helper.Load_Active_Algorithms(All_Algorithms=Algorithms, Current_Date=START_DATE):
-    #         Trader.Run(algorithm)
 
-    #     break # for testing only run once
-    #     time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop
+    while(True):
+        # Ensure list objects are after or = start date and before end date if excists
+        Algorithms = [x for x in Algorithms if x.StartDate <= START_DATE and x.EndDate >= START_DATE or x.StartDate <= START_DATE and x.EndDate == None] 
 
+        break # for testing only run once
+        time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop
