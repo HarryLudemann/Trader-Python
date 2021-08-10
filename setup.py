@@ -7,21 +7,21 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.3'
+VERSION = '0.0.1'
 DESCRIPTION = 'Run/Backtest/Create Easy Python Trading Algorithms'
-LONG_DESCRIPTION = 'A package package that allows creating trading algorithms easy to write, backtest and run.'
+LONG_DESCRIPTION = 'A package that allows easy to write, run and backtest algorithms for stocks, forex and crypto from pre-written data sources eg. alpha vantage, yfinance'
 
 # Setting up
 setup(
-    name="Hazzahx-Trader",
+    name="trader-python",
     version=VERSION,
-    author="Hazzahx (Harry Ludemann)",
+    author="Harry Ludemann",
     author_email="",
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     packages=find_packages(),
     install_requires=['pandas', 'yfinance', 'requests'],
-    keywords=['python', 'Hazzahx', 'trader', 'backtest', 'Hazzahx-Trader'],
+    keywords=['python', 'harryludemann', 'trader', 'backtest', 'trader-python'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
