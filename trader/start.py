@@ -136,28 +136,29 @@ def backtest(algorithm):
         algorithm.on_data(stock)
 
     algorithm.stats()   # print stats
-    algorithm.test()   # print stats
 
     print(f'Finished: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
+
 
 
 def run(Algorithms):
     # currently not setup to be updatable while running
     print("Running Active Methods:")
     START_TIME = datetime.now().strftime("%H:%M:%S")
-    START_DATE = datetime.now().strftime("%Y-%m-%d")  # current date
     # get active none backtest algorithms
-    Algorithms = [x for x in Algorithms if x.StartDate <= START_DATE and x.EndDate >= START_DATE] 
-
+    Algorithms = [x for x in Algorithms if x.Active and not x.Backtest] 
     # set time value to start time
     for algorithm in Algorithms:
         algorithm.Time = START_TIME
 
-
-
     while(True):
+        current_time = datetime.now().strftime("%H:%M:%S")
+        current_date = datetime.now().strftime("%Y-%m-%d")  # current date
         # Ensure list objects are after or = start date and before end date if excists
-        Algorithms = [x for x in Algorithms if x.StartDate <= START_DATE and x.EndDate >= START_DATE or x.StartDate <= START_DATE and x.EndDate == None] 
+        Algorithms = [x for x in Algorithms if x.StartDate <= current_date and x.EndDate >= current_date or x.StartDate <= current_date and x.EndDate == None] 
+        for algorithm in Algorithms:
+            print(current_time - algorithm.Time)
+
 
         break # for testing only run once
         time.sleep(60.0 - ((time.time() - START_TIME) % 60.0))  # sleep for time until next minute from start of loop

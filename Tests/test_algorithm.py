@@ -18,7 +18,7 @@ def test_algorithm():
 
     class TestAlgo(trader.StockAlgorithm):
         """ Test Algorithm that returns test symbol in on data"""
-        def Init(self):
+        def init(self):
             self.Symbol = "AAPL"
             self.Name = "Test Algo"
             self.StartDate = "2018-01-01"
@@ -34,5 +34,5 @@ def test_algorithm():
             print(self.Name, 'Finished with', self.Cash)
 
     algo = TestAlgo()
-    algo.Init()
+    algo.init()
     assert algo.on_data() == "AAPL"

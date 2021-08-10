@@ -1,12 +1,13 @@
-from trader import StockAlgorithm, backtest
+from trader import StockAlgorithm, run
 from datetime import datetime
 
+open_list = []
 class Algorithm(StockAlgorithm):
     """ Example Algorithm to Run """
 
     def init(self):
         self.Active =True
-        self.Backtest = True
+        self.Backtest = False
         self.Name = "Example Algo"
         self.Symbol = "TSLA"
         self.StartDate = datetime.now().strftime("%Y-%m-%d") # current time
@@ -17,25 +18,14 @@ class Algorithm(StockAlgorithm):
 
     def on_data(self, data):
         # print open item in data tuple
-        print(data[1]['open'])
-
+        #print(data[1]['open'])
+        open_list.append(data[1]['open'])
+        
     def stats(self):
-        print(self.Name, 'Finished with', self.Cash)
-
-    def test(self):
-        print(self.Name, 'Finished with', self.Cash)
+        print(self.Name, 'Finished with', self.Cash, 'and', len(open_list), 'items')
 
 
-# test_algo = Algorithm()
-# test_algo.init()
+test_algo = Algorithm()
+test_algo.init()
 
-# backtest(test_algo)
-
-
-# function that takes two lists of ints x and y and returns a list of the numbers that arnt in both
-def not_common(x, y):
-    return [i for i in x + y if i in x and i not in y or i in y and i not in x]
-
-
-
-print( not_common([13, 5, 6, 2, 5], [5, 2, 5, 13]) )
+run([test_algo])
