@@ -21,8 +21,8 @@ class Algorithm(ABC):
     """ Class with variables that all algorithms have"""
     Name = ""                   # Name of algorithm
     Interval = ""               # Interval for data eg 1m, 5m, 1d, 1m
-    Backtest = False           # Wether to the strategy is to back test or to run  - Default False
-    AlphaV_API = None           # Alpha Vantage API key
+    Backtest = False            # Wether to the strategy is to back test or to run  - Default False
+    API_KEY = None              # Alpha Vantage API key
     Cash = 0                    # Cash allowed for algorithm to use
     StartDate = None            # Start Date for algorithm (Some Datasources don't use)
     EndDate = None              # End Date for algorithm (Some Datasources don't use)
@@ -86,42 +86,9 @@ class ForexAlgorithm(Algorithm):
         self.To_Currency = to_currency
 
 
-def get_algorithms():
-    """ returns list load of all classes in Algorithms folder """
-    algorithms = [] 
-    # get list of python files NAMES(without.py) in Algorithms directory
-    files = [f[:-3] for f in listdir(f'{path}/Algorithms') if  f.endswith('.py') and isfile(join('Algorithms', f))]
-    sys.path.insert(0, f'{path}/Algorithms')        # move path into Algorithms directory
-    for file in files:                      # iterate over files
-        file = __import__(file)             # import file
-        algorithm_obj = file.Algorithm()    # create an instance of the class
-        algorithm_obj.Init()                # Run Init method in class
-        algorithms.append(algorithm_obj)    # add instance to list
-    return algorithms                       # return list of instances
-
-
-def get_active_algorithms(Algorithms):
-    """ returns list of classes to run from given list of  - created for run method not callable"""
-     # get list of stocks where current date is within start and end date (optional)
-    active_algorithms = []      
-    current_date = datetime.now().strftime("%Y-%m-%d")  # current date
-    for algorithm in Algorithms:
-        if algorithm.Active == False or algorithm.Backtest == True: continue
-        algo_start = algorithm.StartDate
-        algo_end = algorithm.EndDate
-        if (algo_end != None):      
-            if algo_start <= current_date and algo_end >= current_date:
-                active_algorithms.append(algorithm)    
-        else:
-            if algo_start <= current_date:
-                active_algorithms.append(algorithm)    
-        
-    return active_algorithms
-
-
 def backtest(algorithm):
     """ Method to backtest given algorithm object, gets data and passes each row to on_data method """
-    if algorithm.Active == False or algorithm.Backtest == False: return
+    if algorithm.Active == False: return
     if hasattr(algorithm, 'Symbol'):                # if algorithm is stock algo
         df = getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm)
 
@@ -142,9 +109,10 @@ def backtest(algorithm):
 
 
 def run(Algorithms):
+    """ Pass list of objects runs objects, returns nothing"""
     # currently not setup to be updatable while running
     start_time = time.time()
-    Algorithms = [x for x in Algorithms if x.Active and not x.Backtest] 
+    Algorithms = [x for x in Algorithms if x.Active] 
     minutes_ran = 0
     while True:
         for algorithm in Algorithms:

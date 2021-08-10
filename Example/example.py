@@ -6,7 +6,6 @@ class Algorithm(StockAlgorithm):
 
     def init(self):
         self.Active =True
-        self.Backtest = False
         self.Name = "Example Algo"
         self.Symbol = "TSLA"
         self.StartDate = datetime.now().strftime("%Y-%m-%d") # current time
@@ -21,7 +20,7 @@ class Algorithm(StockAlgorithm):
         print(data)
         
     def stats(self):
-        print(self.Name, 'Finished with', self.Cash, 'and', len(open_list), 'items')
+        print(self.Name, 'Finished with', self.Cash)
 
 
 test_algo = Algorithm()

@@ -13,7 +13,7 @@ sys.path.insert(0, parentdir)
 import trader
 
 
-def test_algorithm():
+def test_stock_algorithm():
     """Checks the algorthm abstract class initializes properly returning value"""
 
     class TestAlgo(trader.StockAlgorithm):
@@ -34,5 +34,31 @@ def test_algorithm():
             print(self.Name, 'Finished with', self.Cash)
 
     algo = TestAlgo()
+    algo.init()
+    assert algo.on_data() == "AAPL"
+
+
+def test_forex_algorithm():
+    """Checks the algorthm abstract class initializes properly returning value"""
+
+    class TestAlgo2(trader.ForexAlgorithm):
+        """ Test Algorithm that returns test symbol in on data"""
+        def init(self):
+            self.To_Currency = "USD"
+            self.From_Currency = "NZD"
+            self.Name = "Test Algo"
+            self.StartDate = "2018-01-01"
+            self.EndDate = "2018-01-02"
+            self.Cash = 100000
+            self.Data_Source = 'AlphaV'
+            self.interval = "1m"
+
+        def on_data(self):
+            return self.Symbol
+            
+        def stats(self):
+            print(self.Name, 'Finished with', self.Cash)
+
+    algo = TestAlgo2()
     algo.init()
     assert algo.on_data() == "AAPL"
