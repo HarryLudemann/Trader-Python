@@ -5,7 +5,7 @@ Module to easily write, run and back test algorithms against current list of dat
 
 ### Install Setup:
 ```
-pip install Hazzahx-Trader
+pip install trader-python
 ```
 ### Functions:
 <table>

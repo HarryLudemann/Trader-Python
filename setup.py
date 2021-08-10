@@ -9,13 +9,13 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 VERSION = '0.0.1'
 DESCRIPTION = 'Run/Backtest/Create Easy Python Trading Algorithms'
-LONG_DESCRIPTION = 'A package package that allows creating trading algorithms easy to write, backtest and run.'
+LONG_DESCRIPTION = 'A package that allows easy to write, run and backtest algorithms for stocks, forex and crypto from pre-written data sources eg. alpha vantage, yfinance'
 
 # Setting up
 setup(
     name="trader-python",
     version=VERSION,
-    author="Hazzahx (Harry Ludemann)",
+    author="Harry Ludemann",
     author_email="",
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
