@@ -10,7 +10,8 @@ class Algorithm(StockAlgorithm):
         self.Symbol = "TSLA"
         self.StartDate = datetime.now().strftime("%Y-%m-%d") # current time
         self.Cash = 100000
-        self.Data_Source = 'yfinance'
+        self.Data_Source = 'alphav'
+        self.API_KEY = 'your_api_key'
         self.Adjusted = False
         self.Interval = "1m"
 

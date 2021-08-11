@@ -25,5 +25,4 @@ test_algo = Algorithm()
 test_algo.init()
 
 backtest([test_algo])
-run([test_algo])
 
