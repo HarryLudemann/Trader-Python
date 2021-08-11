@@ -129,7 +129,7 @@ class Algorithm(ForexAlgorithm):
 test_algo = Algorithm()
 test_algo.init()
 
-backtest(test_algo)
+backtest([test_algo])
 ```
 
 ### Development:

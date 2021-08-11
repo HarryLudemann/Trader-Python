@@ -1,4 +1,4 @@
-from trader import StockAlgorithm, run
+from trader import StockAlgorithm, run, backtest
 from datetime import datetime
 
 class Algorithm(StockAlgorithm):
@@ -10,13 +10,12 @@ class Algorithm(StockAlgorithm):
         self.Symbol = "TSLA"
         self.StartDate = datetime.now().strftime("%Y-%m-%d") # current time
         self.Cash = 100000
-        self.Data_Source = 'yfinance'
+        self.Data_Source = 'alphav'
+        self.API_KEY = 'your_api_key'
         self.Adjusted = False
         self.Interval = "1m"
 
     def on_data(self, data):
-        # print open item in data tuple
-        #print(data[1]['open'])
         print(data)
         
     def stats(self):
@@ -26,4 +25,6 @@ class Algorithm(StockAlgorithm):
 test_algo = Algorithm()
 test_algo.init()
 
+backtest([test_algo])
 run([test_algo])
+
