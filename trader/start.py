@@ -124,6 +124,7 @@ def backtest(algorithms):
         loop.close()
 
 
+
 async def async_run(algorithm):
     """ runs given algorithm object if interval time has passed - dont call (used for run method)"""
     # get algorithms interval in minutes
