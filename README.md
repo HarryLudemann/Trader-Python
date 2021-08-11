@@ -74,8 +74,6 @@ class Algorithm(StockAlgorithm):
         self.Interval = "1m"
 
     def on_data(self, data):
-        # print open item in data tuple
-        #print(data[1]['open'])
         print(data)
         
     def stats(self):
@@ -129,8 +127,6 @@ class Algorithm(ForexAlgorithm):
         self.Interval = "1m"
 
     def on_data(self, data):
-        # print open item in data tuple
-        #print(data[1]['open'])
         print(data)
         
     def stats(self):
@@ -140,7 +136,7 @@ class Algorithm(ForexAlgorithm):
 test_algo = Algorithm()
 test_algo.init()
 
-backtest(test_algo)
+backtest([test_algo])
 ```
 
 ### Development:
