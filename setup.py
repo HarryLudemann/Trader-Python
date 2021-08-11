@@ -20,7 +20,7 @@ setup(
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['pandas', 'yfinance', 'requests'],
+    install_requires=['pandas', 'yfinance', 'alpha_vantage', 'requests'],
     keywords=['python', 'harryludemann', 'trader', 'backtest', 'trader-python'],
     classifiers=[
         "Development Status :: 1 - Planning",

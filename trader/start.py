@@ -1,20 +1,16 @@
 # Modules
 import os           # for file operations
-from datetime import datetime # get current date
 import time 
+import asyncio
 
 # Custom Modules
 from trader import data
-
-# loading algorithms from file
-import sys
-from os import listdir
-from os.path import isfile, join
 
 # abstract classes
 from abc import ABC, abstractmethod
 
 path = os.getcwd().replace('\\','/')     # path script is running from
+backtest_algorithms= []
 
 
 class Algorithm(ABC):
@@ -86,25 +82,43 @@ class ForexAlgorithm(Algorithm):
         self.To_Currency = to_currency
 
 
-def backtest(algorithm):
-    """ Method to backtest given algorithm object, gets data and passes each row to on_data method """
+
+async def backtest(algorithm):
+    """" Method to backtest given algorithm object, gets data and passes each row to on_data method """
     if algorithm.Active == False: return
     if hasattr(algorithm, 'Symbol'):                # if algorithm is stock algo
-        df = getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm)
+        df = await getattr(data, f'get_{algorithm.Data_Source}_stock')(algorithm)
 
     elif hasattr(algorithm, 'From_Currency'):       # if algorithm is forex method
-        df = getattr(data, f'get_{algorithm.Data_Source}_forex')(algorithm)
+        df = await getattr(data, f'get_{algorithm.Data_Source}_forex')(algorithm)
         
     start_date = df.index[0]    # start date of data   
     end_date = df.index[-1]     # end date of data
 
     print(f'Back Testing: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
-
     # need alternative, somewhat slow
     for i in range(len(df)):
         algorithm.on_data(df.iloc[i])
-
     print(f'Finished: {algorithm.Name}: {start_date} to, {end_date} interval: {algorithm.Interval} Data-Source: {algorithm.Data_Source}')
+    return algorithm.stats()
+
+
+# def backtest(algorithms):
+#     """ Method to backtest given list of algorithm objects, gets data and passes each row to on_data method """
+#     #backtest_algorithms = algorithms
+#     loop = asyncio.new_event_loop()
+#     loop = asyncio.get_event_loop()
+#     asyncio.set_event_loop(asyncio.new_event_loop())
+#     for algorithm in algorithms:
+#         asyncio.create_task(async_backtest(algorithm=algorithm))
+
+#     # tasks = [async_backtest(algorithm) for algorithm in algorithms]
+#     # group1 = asyncio.gather(*tasks)
+#     # group1 = asyncio.gather(**(async_backtest(algorithm) for algorithm in algorithms))
+
+#     # loop.run_until_complete(group1)
+#     loop.close()
+
 
 
 
